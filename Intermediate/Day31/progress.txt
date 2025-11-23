@@ -1,0 +1,9 @@
+main,hand
+affaire,case
+compte,account
+dirait,would say
+laisse,leash
+ville,city
+savais,knew
+aimerais,would like to
+sois,be
