@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form %}
+{% block title %}Add Movie{% endblock %}
+
+{% block content %}
+<div class="content" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+    <h1 class="heading" style="width: 100%; text-align: center;">Add a Movie</h1>
+    {{ render_form(form) }}
+</div>
+{% endblock %}
