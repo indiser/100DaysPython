@@ -393,6 +393,38 @@
 
 ---
 
+## 🌐 WEB FOUNDATION (Days 41-44, 58) - ✅ COMPLETED
+
+### **Day 41: HTML Basics**
+✅ **Heading Elements** - HTML heading structure (h1-h6)  
+✅ **Paragraph Elements** - Text content with p tags  
+✅ **Void Elements** - Self-closing tags (br, hr, img)  
+✅ **Movie Ranking Project** - First HTML project with lists and headings
+
+### **Day 42: HTML Intermediate**
+✅ **List Elements** - Ordered and unordered lists  
+✅ **Nesting and Indentation** - Proper HTML structure  
+✅ **Anchor Elements** - Links and navigation  
+✅ **Image Elements** - Adding images to web pages  
+✅ **Birthday Invite Project** - Multi-element HTML page with images and links
+
+### **Day 43: CSS Basics**
+✅ **Adding CSS** - Inline, internal, and external CSS  
+✅ **CSS Selectors** - Element, class, and ID selectors  
+✅ **Color Vocab Project** - Styled vocabulary cards with CSS
+
+### **Day 44: CSS Intermediate**
+✅ **CSS Colors** - Color properties and values  
+✅ **Font Properties** - Font family, size, and weight  
+✅ **CSS Box Model** - Margin, border, padding, content  
+✅ **Motivation Meme Project** - Styled meme generator with box model
+
+### **Day 58: Bootstrap (Revisited)**
+✅ **Bootstrap Components** - Cards, buttons, navbar  
+✅ **TinDog Project** - Responsive website with Bootstrap framework
+
+---
+
 ## 🔴 ADVANCED LEVEL (Days 59-69) - ✅ COMPLETED
 
 ### **Day 59: Advanced Blog**
@@ -642,6 +674,14 @@
 ✅ Template-based Emails  
 ✅ Scheduled Notifications
 
+### **HTML & CSS**
+✅ HTML5 Structure  
+✅ Semantic HTML  
+✅ CSS Styling  
+✅ CSS Selectors  
+✅ Box Model  
+✅ Responsive Design Basics
+
 ---
 
 ## 🎮 Featured Projects
@@ -683,6 +723,12 @@
 - **Personal Portfolio** - Flask website
 - **TinDog** - Bootstrap responsive site
 
+### **🎨 HTML/CSS Projects**
+- **Movie Ranking Page** - HTML lists and structure
+- **Birthday Invite** - Images and links
+- **Color Vocab Cards** - CSS styling
+- **Motivation Meme** - Box model mastery
+
 ---
 
 ## 📂 Project Structure
@@ -706,6 +752,7 @@
 ✅ **20+ Multi-file Projects** with OOP design  
 ✅ **5 Complete Games** (Hangman, Blackjack, Snake, Pong, Turtle Crossing)  
 ✅ **15+ Web Applications** with Flask  
+✅ **10+ HTML/CSS Projects** for web foundation  
 ✅ **10+ Automation Bots** (LinkedIn, Twitter, Instagram, etc.)  
 ✅ **RESTful API** built from scratch  
 ✅ **Database Integration** (SQLite, SQLAlchemy)  
@@ -831,7 +878,9 @@ with open("file.json", "w") as file:
 1. **First Complete Game**: Hangman (Day 7)
 2. **First OOP Project**: Coffee Machine (Day 16)
 3. **First GUI App**: Miles Converter (Day 27)
-4. **First API Integration**: ISS Tracker (Day 33)
+4. **First HTML Page**: Movie Ranking (Day 41)
+5. **First CSS Project**: Color Vocab (Day 43)
+6. **First API Integration**: ISS Tracker (Day 33)
 5. **First Web Scraper**: 100 Movies (Day 45)
 6. **First Flask App**: Higher-Lower Web (Day 55)
 7. **First Database App**: Library Manager (Day 63)
@@ -857,6 +906,7 @@ with open("file.json", "w") as file:
 ✅ **Data Processing** - Can analyze CSV data with Pandas  
 ✅ **File Management** - Can handle TXT, CSV, JSON files  
 ✅ **Game Development** - Can create 2D games with Turtle  
+✅ **HTML/CSS** - Can build static websites with proper structure and styling  
 ✅ **Error Handling** - Can write robust, error-resistant code  
 ✅ **OOP Design** - Can structure large projects with classes  
 ✅ **Version Control** - Can manage code with environment variables
