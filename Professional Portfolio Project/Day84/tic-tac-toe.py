@@ -43,7 +43,10 @@ class Board:
     def update_board(self, position, player):
         index=position-1
         
-        self.slots[index]=player
+        if self.slots[index] == " ":
+            self.slots[index] = player
+            return True
+        return False
     
     def check_winner(self):
         winning_combos = [
@@ -60,6 +63,7 @@ class Board:
     
     def minimax(self, is_maximizing, depth, alpha, beta):
         # 1. Base Case: Check if the game is over
+        
         winner = self.check_winner()
         if winner == "O": # AI wins (assuming AI is 'O')
             return 10-depth
@@ -67,11 +71,13 @@ class Board:
             return depth-10
         if " " not in self.slots: # Draw
             return 0
-            
+        
+        move_order = [4, 0, 2, 6, 8, 1, 3, 5, 7]
+
         # 2. Recursive Step
         if is_maximizing: # AI's Turn (Try to get highest score)
             best_score = -float('inf')
-            for index in range(9):
+            for index in move_order:
                 if self.slots[index] == " ":
                     self.slots[index] = "O" # Make the move
                     score = self.minimax(False,depth+1,alpha=alpha,beta=beta) # Call self (Recursion!)
@@ -80,12 +86,11 @@ class Board:
                     alpha=max(alpha,best_score)
                     if beta <= alpha:
                         break
-
             return best_score
             
         else: # Human's Turn (Try to get lowest score for AI)
             best_score = float('inf')
-            for index in range(9):
+            for index in move_order:
                 if self.slots[index] == " ":
                     self.slots[index] = "X" # Make move
                     score = self.minimax(True,depth+1,alpha=alpha,beta=beta) # Call self
@@ -94,7 +99,6 @@ class Board:
                     beta=min(beta,best_score)
                     if beta <= alpha:
                         break
-
             return best_score
     
     def get_best_move(self):
@@ -103,7 +107,8 @@ class Board:
         alpha = -float('inf')
         beta = float('inf')
         # Loop through all empty spots
-        for index in range(9):
+        move_order = [4, 0, 2, 6, 8, 1, 3, 5, 7]
+        for index in move_order:
             if self.slots[index] == " ":
                 self.slots[index] = "O" # AI tries this spot
                 score = self.minimax(False,0,alpha,beta) # Check outcome
@@ -133,13 +138,23 @@ while game_on:
     game.display()
     
     if current_player == "X":
-        prompt = f"Player {Colors.RED}X{Colors.RESET}, choose (1-9): "
-        try:
-            choice = int(input(prompt))
-        except ValueError:
-            print(f"{Colors.RED}Invalid input! Numbers only.{Colors.RESET}")
-            time.sleep(1)
-            continue
+        while True:
+            prompt = f"Player {Colors.RED}X{Colors.RESET}, choose (1-9): "
+            try:
+                choice = int(input(prompt))
+                if choice < 1 or choice > 9:
+                    print(f"{Colors.RED}1-9 only!{Colors.RESET}")
+                    time.sleep(1)
+                    continue
+                if game.update_board(choice, current_player):
+                    break # Success! Exit the input loop
+                else:
+                    print(f"{Colors.RED}That spot is taken! Try again.{Colors.RESET}")
+                    time.sleep(1)
+            except ValueError:
+                print(f"{Colors.RED}Invalid input! Numbers only.{Colors.RESET}")
+                time.sleep(1)
+                continue
     else:
         # AI Turn
         print("AI is thinking...")
