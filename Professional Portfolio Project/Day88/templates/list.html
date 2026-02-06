@@ -1,0 +1,57 @@
+{% from 'bootstrap5/table.html' import render_table %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing</title>
+    {{ bootstrap.load_css() }}
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Cafe Info</h2>
+        
+        {% if listing %}
+            <table class="table table-dark table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Map URL</th>
+                        <th>Seats</th>
+                        <th>Wifi</th>
+                        <th>Sockets</th>
+                        <th>Toilet</th>
+                        <th>Calls</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in listing %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.location }}</td>
+                        <td><a href="{{ item.map_url }}" class="text-white">Link</a></td>
+                        <td>{{ item.seats }}</td>
+                        <td>{{ 'Yes' if item.has_wifi else 'No' }}</td>
+                        <td>{{ 'Yes' if item.has_sockets else 'No' }}</td>
+                        <td>{{ 'Yes' if item.has_toilet else 'No' }}</td>
+                        <td>{{ 'Yes' if item.can_take_calls else 'No' }}</td>
+                        <td>
+                            <form action="{{ url_for('delete_cafe', id=item.id) }}" method="post">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="alert alert-warning">
+                <h2>No info has been inserted in the database</h2>
+                <a href="{{ url_for('addinfo') }}">Add the first Cafe</a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
