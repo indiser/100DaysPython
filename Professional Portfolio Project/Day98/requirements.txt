@@ -1,0 +1,16 @@
+# --- API & Network ---
+requests
+python-dotenv
+
+# --- AI & Text Analysis ---
+langdetect
+
+# --- Audio Generation ---
+edge-tts
+
+# --- Video Processing ---
+# CRITICAL: Must remain on 1.0.x. Do not upgrade to v2.0+ or the compositor will break.
+moviepy==1.0.3
+
+# --- Utility ---
+yt-dlp
