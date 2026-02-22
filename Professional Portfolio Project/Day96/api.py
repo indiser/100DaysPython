@@ -14,6 +14,7 @@ from flask import send_file
 import time
 import threading
 import io
+import urllib.parse
 
 app=Flask(__name__)
 app.json.sort_keys = False
@@ -270,8 +271,10 @@ def download_page():
     
 @app.route("/api/homepage")
 def get_homepage():
+    page = request.args.get("page", 1, type=int)
     try:
-        url = "https://nhentai.net/"
+        # url = "https://nhentai.net/"
+        url = f"https://nhentai.net/?page={page}"
         # We must use tls_requests to bypass Cloudflare on the homepage
         response = tls_requests.get(url,impersonate="chrome")
         
@@ -309,7 +312,55 @@ def get_homepage():
     except Exception as e:
         return jsonify(error=f"Internal Server Error: {str(e)}"), 500
 
+
+    
+@app.route("/api/search")
+def search_manga():
+    query = request.args.get("q")
+    page = request.args.get("page", 1, type=int)
+
+    if not query:
+        return jsonify(error="Missing search query"), 400
+
+    # Build the exact search URL nHentai uses
+    # url = f"https://nhentai.net/search/?q={query}"
+    url = f"https://nhentai.net/search/?q={query}&page={page}"
+    
+    try:
+        response = tls_requests.get(url, impersonate="chrome")
+        
+        if response.status_code != 200:
+            return jsonify(error=f"Upstream Error: {response.status_code}"), response.status_code
+
+        soup = BeautifulSoup(response.text, 'html.parser')
+        galleries = soup.find_all('div', class_='gallery')
+        results = []
+        
+        for gallery in galleries:
+            link_tag = gallery.find('a', class_='cover')
+            caption_tag = gallery.find('div', class_='caption')
+            img_tag = gallery.find('img')
+            
+            if link_tag and caption_tag and img_tag:
+                manga_id = link_tag['href'].strip('/').split('/')[-1]
+                title = caption_tag.text
+                
+                # Handle lazy loading
+                cover_url = img_tag.get('data-src') or img_tag.get('src')
+                if cover_url and cover_url.startswith("//"):
+                    cover_url = "https:" + cover_url
+                    
+                results.append({
+                    'id': manga_id,
+                    'title': title,
+                    'cover_image': cover_url
+                })
+                
+        return jsonify(results)
+    except Exception as e:
+        return jsonify(error=f"Search failed: {str(e)}"), 500
+
+
 if __name__=='__main__':
     app.run()
-
 
