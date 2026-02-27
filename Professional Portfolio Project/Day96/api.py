@@ -296,7 +296,28 @@ def get_homepage():
             if link_tag and caption_tag and img_tag:
                 manga_id = link_tag['href'].strip('/').split('/')[-1]
                 title = caption_tag.text
+
+                data_tags = gallery.get('data-tags', '')
+                tags_list = data_tags.split() if data_tags else []
                 
+                language = None
+                if '12227' in tags_list:
+                    language = 'english'
+                elif '29963' in tags_list:
+                    language = 'chinese'
+                elif '6346' in tags_list:
+                    language = 'japanese'
+
+                # 2. Secondary Failsafe: If the uploader forgot the tag, aggressively parse the title
+                if not language:
+                    title_lower = title.lower()
+                    if '[english]' in title_lower:
+                        language = 'english'
+                    elif '[chinese]' in title_lower or '翻译' in title_lower:
+                        language = 'chinese'
+                    else:
+                        language = 'japanese' # The ultimate fallback
+
                 # Nhentai lazy-loads homepage images. We must grab 'data-src' if it exists.
                 cover_url = img_tag.get('data-src') or img_tag.get('src')
                 if cover_url and cover_url.startswith("//"):
@@ -305,7 +326,8 @@ def get_homepage():
                 results.append({
                     'id': manga_id,
                     'title': title,
-                    'cover_image': cover_url
+                    'cover_image': cover_url,
+                    'language':language
                 })
                 
         return jsonify(results)
@@ -345,6 +367,28 @@ def search_manga():
                 manga_id = link_tag['href'].strip('/').split('/')[-1]
                 title = caption_tag.text
                 
+                data_tags = gallery.get('data-tags', '')
+                tags_list = data_tags.split() if data_tags else []
+                
+                language = None
+                if '12227' in tags_list:
+                    language = 'english'
+                elif '29963' in tags_list:
+                    language = 'chinese'
+                elif '6346' in tags_list:
+                    language = 'japanese'
+
+                # 2. Secondary Failsafe: If the uploader forgot the tag, aggressively parse the title
+                if not language:
+                    title_lower = title.lower()
+                    if '[english]' in title_lower:
+                        language = 'english'
+                    elif '[chinese]' in title_lower or '翻译' in title_lower:
+                        language = 'chinese'
+                    else:
+                        language = 'japanese' # The ultimate fallback
+
+
                 # Handle lazy loading
                 cover_url = img_tag.get('data-src') or img_tag.get('src')
                 if cover_url and cover_url.startswith("//"):
@@ -353,7 +397,8 @@ def search_manga():
                 results.append({
                     'id': manga_id,
                     'title': title,
-                    'cover_image': cover_url
+                    'cover_image': cover_url,
+                    'language':language
                 })
                 
         return jsonify(results)
@@ -363,4 +408,3 @@ def search_manga():
 
 if __name__=='__main__':
     app.run()
-
