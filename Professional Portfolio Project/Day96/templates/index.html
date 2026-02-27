@@ -119,16 +119,45 @@
         
                 if (data.error) throw new Error(data.error);
 
-                const gridHtml = data.map(manga => `
+                const flagMap = {
+                    'english': 'https://flagcdn.com/w20/gb.png',
+                    'chinese': 'https://flagcdn.com/w20/cn.png',
+                    'japanese': 'https://flagcdn.com/w20/jp.png'
+                };
+
+                // const gridHtml = data.map(manga => `
+                //     <div class="bg-nhCard rounded-md overflow-hidden cursor-pointer hover:ring-2 hover:ring-nhPink transition-all duration-200 shadow-lg group flex flex-col" onclick="loadMangaDirectly('${manga.id}')">
+                //         <div class="relative w-full aspect-[3/4] overflow-hidden bg-nhDark">
+                //             <img src="${manga.cover_image}" referrerpolicy="no-referrer" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                //         </div>
+                //         <div class="p-3 flex-1 flex flex-col justify-between">
+                //             <h4 class="text-xs font-bold text-gray-300 line-clamp-2 leading-snug group-hover:text-white transition-colors">${manga.title}</h4>
+                //         </div>
+                //     </div>
+                // `).join('');
+
+                const gridHtml = data.map(manga => {
+                    // Look up the flag based strictly on the backend's payload.
+                    const flagSrc = flagMap[manga.language];
+                    
+                    // Generate the inline image tag only if a flag exists.
+                    const flagHtml = flagSrc 
+                        ? `<img src="${flagSrc}" alt="${manga.language}" class="inline-block w-[18px] h-[12px] mr-1 align-baseline rounded-sm shadow-sm">` 
+                        : '';
+
+                    return `
                     <div class="bg-nhCard rounded-md overflow-hidden cursor-pointer hover:ring-2 hover:ring-nhPink transition-all duration-200 shadow-lg group flex flex-col" onclick="loadMangaDirectly('${manga.id}')">
                         <div class="relative w-full aspect-[3/4] overflow-hidden bg-nhDark">
                             <img src="${manga.cover_image}" referrerpolicy="no-referrer" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <div class="p-3 flex-1 flex flex-col justify-between">
-                            <h4 class="text-xs font-bold text-gray-300 line-clamp-2 leading-snug group-hover:text-white transition-colors">${manga.title}</h4>
+                        <div class="p-3 flex-1 flex flex-col justify-start">
+                            <h4 class="text-xs font-bold text-gray-300 line-clamp-2 leading-snug group-hover:text-white transition-colors">
+                                ${flagHtml}${manga.title}
+                            </h4>
                         </div>
                     </div>
-                `).join('');
+                `}).join('');
+
 
                 if (page === 1) {
                     // Page 1: Create the grid and the Load More button container
@@ -250,16 +279,45 @@
                     return;
                 }
 
-                const gridHtml = data.map(manga => `
+                const flagMap = {
+                    'english': 'https://flagcdn.com/w20/gb.png',
+                    'chinese': 'https://flagcdn.com/w20/cn.png',
+                    'japanese': 'https://flagcdn.com/w20/jp.png'
+                };
+
+                // const gridHtml = data.map(manga => `
+                //     <div class="bg-nhCard rounded-md overflow-hidden cursor-pointer hover:ring-2 hover:ring-nhPink transition-all duration-200 shadow-lg group flex flex-col" onclick="loadMangaDirectly('${manga.id}')">
+                //         <div class="relative w-full aspect-[3/4] overflow-hidden bg-nhDark">
+                //             <img src="${manga.cover_image}" referrerpolicy="no-referrer" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                //         </div>
+                //         <div class="p-3 flex-1 flex flex-col justify-between">
+                //             <h4 class="text-xs font-bold text-gray-300 line-clamp-2 leading-snug group-hover:text-white transition-colors">${manga.title}</h4>
+                //         </div>
+                //     </div>
+                // `).join('');
+
+                const gridHtml = data.map(manga => {
+                    // Look up the flag based strictly on the backend's payload.
+                    const flagSrc = flagMap[manga.language];
+                    
+                    // Generate the inline image tag only if a flag exists.
+                    const flagHtml = flagSrc 
+                        ? `<img src="${flagSrc}" alt="${manga.language}" class="inline-block w-[18px] h-[12px] mr-1 align-baseline rounded-sm shadow-sm">` 
+                        : '';
+
+                    return `
                     <div class="bg-nhCard rounded-md overflow-hidden cursor-pointer hover:ring-2 hover:ring-nhPink transition-all duration-200 shadow-lg group flex flex-col" onclick="loadMangaDirectly('${manga.id}')">
                         <div class="relative w-full aspect-[3/4] overflow-hidden bg-nhDark">
                             <img src="${manga.cover_image}" referrerpolicy="no-referrer" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <div class="p-3 flex-1 flex flex-col justify-between">
-                            <h4 class="text-xs font-bold text-gray-300 line-clamp-2 leading-snug group-hover:text-white transition-colors">${manga.title}</h4>
+                        <div class="p-3 flex-1 flex flex-col justify-start">
+                            <h4 class="text-xs font-bold text-gray-300 line-clamp-2 leading-snug group-hover:text-white transition-colors">
+                                ${flagHtml}${manga.title}
+                            </h4>
                         </div>
                     </div>
-                `).join('');
+                `}).join('');
+
 
                 if (page === 1) {
                     outputDiv.innerHTML = `
