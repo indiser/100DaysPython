@@ -1,0 +1,15 @@
+requests
+python-dotenv
+langdetect
+edge-tts
+moviepy==1.0.3
+yt-dlp
+groq
+openai
+google-genai
+huggingface_hub
+undetected_chromedriver
+selenium
+google-api-python-client 
+google-auth-oauthlib 
+google-auth-httplib2
