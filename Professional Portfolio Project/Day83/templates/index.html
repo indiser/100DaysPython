@@ -1,0 +1,319 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Portfolio Website</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="static/css/main.css" />
+		<style>
+    		/* 1. Define the colors */
+    		:root {
+        		--bg-color: #ffffff;       /* Pure White */
+        		--bg-alt: #eaeaea;         /* Darker Grey - clearly separates sections */
+        		--text-color: #222222;     /* Strong dark grey for readability */
+        		--accent-color: #007bff;
+        		--nav-bg: #f8f8f8;
+        		--input-bg: #ffffff;       /* Inputs become White in Day Mode */
+        		--input-border: #bbbbbb;
+    		}
+
+    		[data-theme="dark"] {
+        		--bg-color: #121212;       /* Deep Black */
+        		--bg-alt: #1e1e1e;         /* Slightly lighter for contrast */
+        		--text-color: #e0e0e0;
+        		--accent-color: #bb86fc;
+        		--nav-bg: #1a1a1a;
+        		--input-bg: rgba(255,255,255,0.05); /* Subtle transparency for Dark Mode */
+        		--input-border: #444444;
+    		}
+
+    		/* 2. Base Transitions */
+    		body, article {
+        		transition: background-color 0.3s, color 0.3s;
+        		color: var(--text-color) !important;
+    		}
+
+    		/* 3. Main Backgrounds (Top & Portfolio) */
+    		body, article.style1, article.style3 {
+        		background-color: var(--bg-color) !important;
+    		}
+
+    		/* 4. Alternate Backgrounds (Work & Contact) */
+    		article.style2, article.style4 {
+        		background-color: var(--bg-alt) !important;
+    		}
+
+    		/* 5. Navbar & Links */
+    		#nav { background-color: var(--nav-bg) !important; }
+    		#nav a { color: var(--text-color) !important; transition: color 0.2s ease; }
+    		#nav a:hover { color: var(--accent-color) !important; }
+
+    		/* 6. Form Inputs - THE CRITICAL FIX */
+    		/* This gives inputs a white box in Day Mode, making them pop */
+    		input, textarea {
+        		background-color: var(--input-bg) !important;
+        		border: 1px solid var(--input-border) !important;
+        		color: var(--text-color) !important;
+        		box-shadow: none !important; /* Removes template glow */
+    		}
+
+    		input:focus, textarea:focus {
+        		border-color: var(--accent-color) !important;
+        		box-shadow: 0 0 0 1px var(--accent-color) !important;
+    		}
+    
+    		::placeholder { color: var(--text-color) !important; opacity: 0.5; }
+
+    		/* 7. Button & Social Icons Visibility */
+    		/* Forces the icons to be visible against the new background */
+    		ul.social li a.icon {
+        		border-color: var(--text-color) !important;
+        		color: var(--text-color) !important;
+    		}
+    		ul.social li a.icon:hover {
+        		color: var(--accent-color) !important;
+        		border-color: var(--accent-color) !important;
+    		}
+
+    		/* 8. Toggle Button */
+    		#theme-toggle {
+        		background: transparent;
+        		border: 1px solid var(--text-color);
+        		color: var(--text-color);
+        		width: 40px; height: 40px; border-radius: 50%;
+        		cursor: pointer; display: flex; align-items: center; justify-content: center;
+        		font-size: 1.2rem; transition: transform 0.2s ease; margin-top: 5px;
+    		}
+    		#theme-toggle:hover {
+        		transform: scale(1.1);
+        		background: var(--accent-color);
+        		border-color: var(--accent-color);
+        		color: white;
+    		}		
+	</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Nav -->
+			<nav id="nav">
+				<ul class="container">
+					<li><a href="#top">Top</a></li>
+					<li><a href="#work">Work</a></li>
+					<li><a href="#portfolio">Portfolio</a></li>
+					<li><a href="#contact">Contact</a></li>
+					<li>
+						<div class="theme-switch-wrapper">
+							<button id="theme-toggle" aria-label="Toggle Dark Mode">
+								<span class="icon">day/night</span>
+							</button>
+						</div>
+					</li>
+				</ul>
+			</nav>
+
+		<!-- Home -->
+			<article id="top" class="wrapper style1">
+				<div class="container">
+					<div class="row">
+						<div class="col-4 col-5-large col-12-medium">
+							<span class="image fit"><img src="static/images/profile.png" alt="" /></span>
+						</div>
+						<div class="col-8 col-7-large col-12-medium">
+							<header>
+								<h1>Hi. I'm <strong>Indiser</strong>.</h1>
+							</header>
+							<p>And this is my <strong>Portfolio</strong> website. </p>
+							<a href="#work" class="button large scrolly">Learn about what I do</a>
+						</div>
+					</div>
+				</div>
+			</article>
+
+		<!-- Work -->
+			<article id="work" class="wrapper style2">
+				<div class="container">
+					<header>
+						<h2>Here's all the stuff I do.</h2>
+						<p>I develop stuff. Surprise!!!</p>
+					</header>
+					<div class="row aln-center">
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<span class="icon solid featured fa-robot"></span>
+								<h3>Automation & Scripting</h3>
+								<p>I build Python scripts to automate repetitive tasks, scrape data using Selenium & BeautifulSoup.</p>
+							</section>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<span class="icon solid featured fa-server"></span>
+								<h3>Web Development</h3>
+								<p>I develop backend logic and RESTful APIs using Flask and integrate them with responsive front-end interfaces.</p>
+							</section>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<span class="icon featured fa-thumbs-up"></span>
+								<h3>Data & APIs</h3>
+								<p>I connect to third-party APIs (Stripe, Twilio, Spotify) to retrieve data and process it using Pandas and NumPy.</p>
+							</section>
+						</div>
+					</div>
+					<footer>
+						<a href="#portfolio" class="button large scrolly">See some of my recent work</a>
+					</footer>
+				</div>
+			</article>
+
+		<!-- Portfolio -->
+			<article id="portfolio" class="wrapper style3">
+				<div class="container">
+					<header>
+						<h2>Here’s some stuff I made recently.</h2>
+					</header>
+					<div class="row">
+						<div class="col-4 col-6-medium col-12-small">
+							<article class="box style2">
+								<a href="https://github.com/indiser/bharat-news-atlas" class="image featured"><img src="static/images/bharat_news.png" alt="" /></a>
+								<h3><a href="https://github.com/indiser/bharat-news-atlas">Bharat News Atlas</a></h3>
+								<p>🇮🇳 Real-time interactive heatmap visualizing news across India's states & cities.</p>
+							</article>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<article class="box style2">
+								<a href="https://github.com/indiser/manga-oracle" class="image featured"><img src="static/images/manga.png" alt="" /></a>
+								<h3><a href="https://github.com/indiser/manga-oracle">Manga Oracle</a></h3>
+								<p>Predictive analytics for manga survival. Uses XGBoost + stacking ensembles to forecast series continuation probability.</p>
+							</article>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<article class="box style2">
+								<a href="https://github.com/indiser/Arbitrage-Hunter" class="image featured"><img src="static/images/arbitrag.png" alt="" /></a>
+								<h3><a href="https://github.com/indiser/Arbitrage-Hunter">Arbitrag Hunter</a></h3>
+								<p>Scrapes Flipkart gaming laptops, predicts fair market value (92% accuracy).</p>
+							</article>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<article class="box style2">
+								<a href="https://github.com/indiser/The-Fake-Shop" class="image featured"><img src="static/images/shop.png" alt="" /></a>
+								<h3><a href="https://github.com/indiser/The-Fake-Shop">The Fake Shop</a></h3>
+								<p>The Fake Shop is a modern, feature-rich e-commerce web application that demonstrates full-stack development capabilities.</p>
+							</article>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<article class="box style2">
+								<a href="https://github.com/indiser/DSA-Projects/tree/main/Compression/Decompression" class="image featured"><img src="static/images/huffman.png" alt="" /></a>
+								<h3><a href="https://github.com/indiser/DSA-Projects/tree/main/Compression/Decompression">Huffman File Compressor</a></h3>
+								<p>A command-line utility for efficient file compression and decompression using the Huffman coding algorithm.</p>
+							</article>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<article class="box style2">
+								<a href="#" class="image featured"><img src="static/images/socio.png" alt="" /></a>
+								<h3><a href="#">Friend Recommendation</a></h3>
+								<p>An application that models social networks and recommends friends using (BFS) and mutual connection analysis.</p>
+							</article>
+						</div>
+					</div>
+					<footer>
+						<a href="#contact" class="button large scrolly">Get in touch with me</a>
+					</footer>
+				</div>
+			</article>
+
+		<!-- Contact -->
+			<article id="contact" class="wrapper style4">
+				<div class="container medium">
+					<header>
+						<h2>Have me make stuff for you.</h2>
+						<p>Fill out the form below and i will contact you.Promise.</p>
+					</header>
+					<div class="row">
+						<div class="col-12">
+							{% if success %}
+    						<p style="color: green; font-weight: bold; text-align: center;">Message Sent Successfully! I'll be in touch.</p>
+							{% endif %}
+							<form method="post" action="{{ url_for('send_msg') }}">
+								<div class="row">
+									<div class="col-6 col-12-small">
+										<input type="text" name="name" id="name" placeholder="Name" />
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="text" name="email" id="email" placeholder="Email" />
+									</div>
+									<div class="col-12">
+										<input type="text" name="subject" id="subject" placeholder="Subject" />
+									</div>
+									<div class="col-12">
+										<textarea name="message" id="message" placeholder="Message"></textarea>
+									</div>
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" /></li>
+											<li><input type="reset" value="Clear Form" class="alt" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-12">
+							<hr />
+							<h3>Find me on ...</h3>
+							<ul class="social">
+								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+								<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+								<li><a href="https://github.com/indiser" class="icon brands fa-github"><span class="label">Github</span></a></li>
+							</ul>
+							<hr />
+						</div>
+					</div>
+					<footer>
+						<ul id="copyright">
+							<li>&copy; 2026 Indiser. All rights reserved.</li>
+						</ul>
+					</footer>
+				</div>
+			</article>
+
+		<!-- Scripts -->
+			<script src="static/js/jquery.min.js"></script>
+			<script src="static/js/jquery.scrolly.min.js"></script>
+			<script src="static/js/browser.min.js"></script>
+			<script src="static/js/breakpoints.min.js"></script>
+			<script src="static/js/util.js"></script>
+			<script src="static/js/main.js"></script>
+			<script>
+    			const togglebtn = document.getElementById('theme-toggle');
+    			const root = document.documentElement;
+    			const icon = togglebtn.querySelector('.icon');
+
+    			// 1. Check for saved user preference on load
+    			const savedTheme = localStorage.getItem('theme');
+    			if (savedTheme === 'dark') {
+        			root.setAttribute('data-theme', 'dark');
+        			icon.textContent = '☀️'; // Set to Day icon (sun) if dark mode is active
+    			} else {
+        			icon.textContent = '🌙'; // Set to Night icon (moon) default
+    			}
+
+    			// 2. The Toggle Logic
+    			togglebtn.addEventListener('click', () => {
+        			if (root.getAttribute('data-theme') === 'dark') {
+            			// Switch to Light
+            			root.removeAttribute('data-theme');
+            			icon.textContent = '🌙'; 
+            			localStorage.setItem('theme', 'light');
+        			} else {
+            // Switch to Dark (This was the error in your code)
+            			root.setAttribute('data-theme', 'dark');
+            			icon.textContent = '☀️';
+            			localStorage.setItem('theme', 'dark');
+        			}
+   			 	});
+			</script>
+
+	</body>
+</html>
