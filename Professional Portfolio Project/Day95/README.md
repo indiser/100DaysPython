@@ -1,41 +1,44 @@
-# 📚 nHentai API Wrapper
+# 📚 Day 95: Custom API - Doujin API
 
-> *Because sometimes you need to programmatically access manga metadata. For research purposes, obviously.*
+> **100 Days of Python - Day 95: Professional Portfolio Project**
 
-A blazingly fast FastAPI-based REST API that scrapes and serves manga metadata from nHentai. Built with modern async Python and just enough web scraping magic to make it work.
+A high-performance async REST API built with FastAPI that scrapes and serves manga metadata. Features CloudFlare bypass, async session management, and comprehensive data extraction.
 
-## 🎯 Overview
+## 🎯 Project Overview
 
-This API provides a clean, RESTful interface to retrieve comprehensive manga information including metadata, tags, recommendations, and image URLs. It leverages CloudFlare bypass techniques (via `curl_cffi`) and BeautifulSoup for parsing, because apparently nHentai doesn't believe in official APIs.
+Part of the 100 Days of Python challenge, this project demonstrates advanced API development with modern Python async patterns, web scraping techniques, and production-ready architecture.
 
 ### Key Features
 
-- ⚡ **Async Everything**: Built on FastAPI with async/await for maximum performance
-- 🔒 **CloudFlare Bypass**: Uses `curl_cffi` to impersonate Chrome and bypass protection
-- 📊 **Rich Metadata**: Extracts titles, tags, artists, characters, parodies, and more
-- 🖼️ **Image URLs**: Generates direct links to all pages and cover images
-- 🎲 **Recommendations**: Scrapes related content suggestions
-- 🧹 **Clean JSON**: Returns well-structured, easy-to-consume data
+- ⚡ **FastAPI Framework**: Modern async web framework with automatic documentation
+- 🔒 **CloudFlare Bypass**: Uses `curl_cffi` for browser impersonation
+- 📊 **Rich Metadata Extraction**: Tags, artists, characters, parodies, and more
+- 🖼️ **Direct Image URLs**: Generates links to all pages and cover images
+- 🎲 **Recommendations Scraping**: Related content suggestions
+- 🧹 **Clean JSON Responses**: Well-structured, easy-to-consume data
+- 🔄 **Async Session Management**: Proper lifespan handling with startup/shutdown
+- 📖 **Swagger Documentation**: Auto-generated API docs endpoint
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
 - Python 3.8+
-- A questionable sense of humor
-- No judgment
+- FastAPI
+- curl_cffi
+- BeautifulSoup4
+- Uvicorn
 
 ### Installation
 
-1. **Clone the repository** (or just copy the files, we won't tell)
+1. **Navigate to project directory**
    ```bash
-   git clone <your-repo-url>
-   cd fastapi
+   cd "100Days Python/Professional Portfolio Project/Day95/fastapi"
    ```
 
 2. **Install dependencies**
    ```bash
-   pip install -r requirements.txt
+   pip install fastapi uvicorn curl-cffi beautifulsoup4
    ```
 
 3. **Run the server**
@@ -43,7 +46,7 @@ This API provides a clean, RESTful interface to retrieve comprehensive manga inf
    uvicorn main:app --reload
    ```
 
-   Or with Gunicorn for production:
+   For production with Gunicorn:
    ```bash
    gunicorn main:app -k uvicorn.workers.UvicornWorker
    ```
@@ -55,7 +58,7 @@ The API will be available at `http://localhost:8000`
 ### Endpoints
 
 #### `GET /`
-**Home endpoint** - Returns a friendly reminder that you're supposed to use the actual endpoints.
+**Home endpoint** - Returns a message directing users to the proper endpoints.
 
 **Response:**
 ```json
@@ -63,7 +66,6 @@ The API will be available at `http://localhost:8000`
   "Messege": "Go To The EndPoint Moron"
 }
 ```
-*Note: Yes, "Messege" is intentionally misspelled. It's a feature, not a bug.*
 
 ---
 
@@ -117,7 +119,7 @@ curl http://localhost:8000/manga_id=177013
 
 ### Tech Stack
 
-- **FastAPI**: Modern, fast web framework for building APIs
+- **FastAPI**: Modern async web framework with automatic API documentation
 - **curl_cffi**: CloudFlare bypass via browser impersonation
 - **BeautifulSoup4**: HTML parsing for scraping recommendations and cover images
 - **Uvicorn/Gunicorn**: ASGI server for production deployment
@@ -134,10 +136,10 @@ curl http://localhost:8000/manga_id=177013
 
 ### Lifespan Management
 
-The API properly manages the async session lifecycle:
-- Session created on startup
+The API implements proper async session lifecycle management:
+- Session created on startup using lifespan context manager
 - Gracefully closed on shutdown
-- No resource leaks (we're professionals here)
+- Prevents resource leaks and connection issues
 
 ## 🔧 Configuration
 
@@ -154,76 +156,66 @@ Supports multiple formats with automatic detection:
 - `w` → WebP
 - `g` → GIF
 
-## 🚦 Future Prospects
+## 🎓 Learning Outcomes
 
-Because every good project needs a roadmap of features that may or may not ever get implemented:
+### Skills Demonstrated
 
-### Short-term Goals
-- [ ] **Rate Limiting**: Add proper rate limiting to avoid getting IP banned
-- [ ] **Caching**: Implement Redis caching for frequently requested manga
-- [ ] **Error Handling**: More granular error responses (404s, 503s, etc.)
-- [ ] **Pagination**: Support for browsing multiple manga
+✅ **FastAPI Framework**: Building production-ready REST APIs  
+✅ **Async/Await**: Modern Python asynchronous programming  
+✅ **Web Scraping**: Data extraction with BeautifulSoup  
+✅ **CloudFlare Bypass**: Browser impersonation techniques  
+✅ **Session Management**: Proper resource lifecycle handling  
+✅ **JSON Processing**: Regex extraction and data parsing  
+✅ **URL Generation**: Dynamic image URL construction  
+✅ **Error Handling**: Graceful failure management  
+✅ **API Design**: RESTful endpoint structure  
+✅ **Documentation**: Swagger/OpenAPI integration
+
+## 🚦 Potential Enhancements
+
+- [ ] **Rate Limiting**: Prevent API abuse
+- [ ] **Caching**: Redis integration for performance
+- [ ] **Error Handling**: More granular HTTP status codes
 - [ ] **Search Endpoint**: Query by tags, artists, or titles
-- [ ] **Swagger Docs**: Auto-generated API documentation (FastAPI makes this trivial)
-
-### Medium-term Goals
-- [ ] **Database Integration**: Store metadata locally for faster access
-- [ ] **Proxy Rotation**: Distribute requests across multiple IPs
-- [ ] **Webhook Support**: Notify when new content from favorite artists drops
-- [ ] **Batch Requests**: Retrieve multiple manga in a single API call
-- [ ] **Image Proxy**: Serve images through the API to avoid CORS issues
-- [ ] **Authentication**: API keys for access control (if you're feeling fancy)
-
-### Long-term Goals
-- [ ] **GraphQL Support**: Because REST is so 2020
-- [ ] **WebSocket Streaming**: Real-time updates for new releases
-- [ ] **Machine Learning**: Auto-tagging and content recommendations
-- [ ] **Mobile SDK**: Native libraries for iOS/Android
-- [ ] **Blockchain Integration**: Just kidding. We're not that desperate for funding.
-- [ ] **World Domination**: Standard startup goal
+- [ ] **Database Integration**: Local metadata storage
+- [ ] **Authentication**: API key system
 
 ## 🐛 Known Issues
 
-- Error handling could be more specific
+- Error handling could be more specific with HTTP status codes
 - No retry logic for failed requests
 - Session isn't shared across workers in multi-process deployments
 
-## 🤝 Contributing
+## 📊 Project Context
 
-Contributions are welcome! Whether it's fixing typos (please do), adding features, or improving documentation, feel free to submit a PR.
+This project is part of the **100 Days of Python** challenge:
+- **Day**: 95/100
+- **Level**: Professional Portfolio Projects
+- **Category**: API Development & Web Scraping
+- **Complexity**: Advanced
 
-### Development Setup
-```bash
-# Install dev dependencies
-pip install -r requirements.txt
-
-# Run with auto-reload
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
+### Related Projects in This Challenge
+- Day 66: RESTful Cafe API
+- Day 96: Manga/Comic API (Enhanced version)
+- Day 97: E-Commerce Platform API
 
 ## ⚖️ Legal Disclaimer
 
-This project is for educational purposes only. Web scraping may violate the terms of service of the target website. Use responsibly and at your own risk. The authors are not responsible for any misuse of this software.
-
-*Translation: Don't blame us if you get banned.*
-
-## 📝 License
-
-This project is provided as-is with no license specified. Use it, modify it, sell it to venture capitalists for millions. We don't care.
+This project is for **educational purposes only** as part of a coding challenge. Web scraping may violate terms of service. Use responsibly and at your own risk.
 
 ## 🙏 Acknowledgments
 
-- **FastAPI**: For making Python web development not painful
-- **curl_cffi**: For solving the CloudFlare problem we didn't want to deal with
-- **BeautifulSoup**: Still the GOAT of HTML parsing after all these years
-- **nHentai**: For not having an official API and forcing me to build this
+- **FastAPI**: Modern Python web framework
+- **curl_cffi**: CloudFlare bypass solution
+- **BeautifulSoup**: HTML parsing library
+- **100 Days of Python Challenge**: Project inspiration
 
 ---
 
 <div align="center">
 
-**Built with 💻 and questionable life choices**
+**Day 95/100 - Professional Portfolio Project**
 
-*If you found this useful, consider starring the repo. Or don't. We're not your mom.*
+*Part of the journey from beginner to professional Python developer*
 
 </div>
