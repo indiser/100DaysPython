@@ -182,17 +182,19 @@ pip install -r requirements.txt
 ```
 
 **Dependencies installed:**
-- Flask 3.0.0 - Web framework
-- Flask-SQLAlchemy 3.1.1 - Database ORM
-- Flask-Login 0.6.3 - User session management
-- Flask-WTF 1.2.1 - Form handling and CSRF protection
-- WTForms 3.1.1 - Form validation
-- Flask-Mail 0.9.1 - Email sending
-- python-dotenv 1.0.0 - Environment variable management
-- Werkzeug 3.0.1 - Password hashing utilities
-- cloudinary 1.36.0 - Cloud image storage and transformation
-- itsdangerous 2.1.2 - Token generation for password reset
-- email-validator 2.1.0 - Email format validation
+- Flask - Web framework
+- Flask-SQLAlchemy - Database ORM
+- Flask-Login - User session management
+- Flask-WTF - Form handling and CSRF protection
+- WTForms - Form validation
+- Flask-Mail - Email sending
+- python-dotenv - Environment variable management
+- Werkzeug - Password hashing utilities
+- cloudinary - Cloud image storage and transformation
+- itsdangerous - Token generation for password reset
+- email-validator - Email format validation
+- xhtml2pdf - PDF invoice generation
+- gunicorn - Production WSGI server
 
 4. **Set up environment variables**
 
@@ -204,6 +206,386 @@ CLOUDINARY_CLOUD_NAME=your-cloudinary-cloud-name
 CLOUDINARY_API_KEY=your-cloudinary-api-key
 CLOUDINARY_API_SECRETS=your-cloudinary-api-secret
 EMAIL_USER=your-gmail-address@gmail.com
+EMAIL_PASS=your-gmail-app-password
+```
+
+**Important Notes:**
+- For Gmail, you need to generate an App Password (not your regular password)
+- Enable 2-Factor Authentication on your Google account first
+- Go to Google Account → Security → 2-Step Verification → App Passwords
+- Generate a new app password and use it for `EMAIL_PASS`
+
+5. **Initialize the database**
+```bash
+python
+>>> from server import app, db
+>>> with app.app_context():
+...     db.create_all()
+>>> exit()
+```
+
+6. **Run the application**
+```bash
+python server.py
+```
+
+The application will be available at `http://127.0.0.1:5000/`
+
+---
+
+## 🚀 Usage
+
+### First Time Setup
+1. Register a new account - **The first user (ID #1) automatically becomes the admin**
+2. Login with your credentials
+3. As admin, navigate to "Add Product" to populate your store
+4. Upload product images via Cloudinary or provide image URLs
+5. Add multiple images per product for gallery display
+
+### Customer Features
+- Browse products with search and sorting
+- View detailed product pages with image carousel
+- Add products to cart and checkout
+- Save products to wishlist
+- Leave reviews and ratings
+- Track order history and status
+- Cancel pending orders
+- Update profile and password
+- Reset forgotten password via email
+
+### Admin Features
+- Access admin dashboard at `/admin/dashboard`
+- View analytics: Total Revenue, Total Orders, Average Order Value
+- See sales trends with interactive Chart.js visualization
+- View top 5 search terms from customers
+- Manage all products (Add/Edit/Delete)
+- Upload multiple images per product
+- View all customer orders at `/admin/orders`
+- Update order status (Pending → Shipped → Cancelled)
+- Export all orders to CSV for reporting
+- Create and manage discount coupons at `/admin/coupons`
+- Receive email alerts for new orders
+
+---
+
+## 📁 Project Structure
+
+```
+Day97/
+├── instance/
+│   └── Product.db              # SQLite database
+├── static/
+│   └── favicon.png             # Site favicon
+├── templates/
+│   ├── base.html               # Base template with navbar and theme toggle
+│   ├── index.html              # Product catalog with pagination
+│   ├── product_detail.html     # Product page with carousel and reviews
+│   ├── cart.html               # Shopping cart with coupon input
+│   ├── success.html            # Order confirmation page
+│   ├── register.html           # User registration form
+│   ├── login.html              # User login form
+│   ├── profile.html            # User profile editor
+│   ├── my_orders.html          # Customer order history
+│   ├── reset_request.html      # Password reset request
+│   ├── reset_token.html        # Password reset form
+│   ├── add_product.html        # Admin product form (add/edit)
+│   ├── admin_dashboard.html    # Admin analytics dashboard
+│   ├── admin_orders.html       # Admin order management
+│   ├── admin_coupons.html      # Admin coupon management
+│   └── invoice.html            # PDF invoice template
+├── .env                        # Environment variables (not in repo)
+├── server.py                   # Main Flask application
+├── requirements.txt            # Python dependencies
+├── procfile                    # Deployment configuration
+└── Readme.md                   # This file
+```
+
+---
+
+## 🗄️ Database Schema
+
+### Tables (7 total)
+
+1. **User** - Customer and admin accounts
+   - id, name, email, password (hashed), is_deleted
+   - Relationships: orders, reviews, wishlist
+
+2. **Product** - Store inventory
+   - id, title, price (in cents), description, image_url
+   - Relationships: reviews, images, wishlist
+   - Methods: get_rating(), get_watermarked_image()
+
+3. **ProductImage** - Additional product images
+   - id, image_url, product_id (FK)
+
+4. **Order** - Customer purchases
+   - id, user_id (FK), date, total_price, status, discount_amount
+   - Relationships: items, customer
+
+5. **OrderItem** - Individual items in orders
+   - id, order_id (FK), product_id (FK), quantity, price_at_purchase
+   - Relationships: order, product
+
+6. **Review** - Product reviews and ratings
+   - id, rating (1-5), text, product_id (FK), user_id (FK), date_posted
+   - Relationships: product, author
+
+7. **Coupon** - Discount codes
+   - id, code, discount (percentage), active
+
+8. **SearchTerm** - Search analytics
+   - id, term, count, last_searched
+
+9. **wishlist_table** - Many-to-many relationship (User ↔ Product)
+
+---
+
+## 🔒 Security Features
+
+### Authentication & Authorization
+- **Password Hashing**: PBKDF2-SHA256 with 8-byte salt via Werkzeug
+- **Session Management**: Flask-Login with secure cookies
+- **Role-Based Access**: Custom `@admin_only` decorator (403 error for unauthorized)
+- **Login Required**: `@login_required` decorator for protected routes
+- **Admin Identification**: First registered user (ID #1) is automatically admin
+
+### Input Validation
+- **Email Validation**: WTForms email validator + custom domain whitelist
+- **Disposable Email Blocking**: 28+ burner email domains blocked
+- **Allowed Providers**: Gmail, Yahoo, Outlook, iCloud, ProtonMail only
+- **Password Strength**: Minimum 8 characters, requires uppercase, lowercase, number, and symbol
+- **CSRF Protection**: Flask-WTF CSRF tokens on all forms
+- **File Upload Security**: FileAllowed validator (jpg, png, jpeg only)
+
+### Data Protection
+- **SQL Injection Prevention**: SQLAlchemy ORM with parameterized queries
+- **Soft Delete**: Users marked as deleted (is_deleted flag) instead of hard delete
+- **Price Snapshots**: Order items store price_at_purchase to prevent price manipulation
+- **Token-Based Reset**: Time-limited password reset tokens (30 min expiry)
+- **Environment Variables**: Sensitive credentials stored in .env file
+
+### Email Security
+- **Gmail App Passwords**: Uses app-specific passwords instead of account password
+- **TLS Encryption**: SMTP connection uses TLS (port 587)
+- **Email Verification**: Validates email format before sending
+
+---
+
+## 📧 Email Notifications
+
+The application sends automated emails for:
+
+1. **Order Confirmation** (Customer)
+   - Plain text receipt with order details
+   - PDF invoice attachment (generated with xhtml2pdf)
+   - Sent immediately after checkout
+
+2. **Order Shipped** (Customer)
+   - Notification when admin marks order as shipped
+   - Includes order ID and shipping date
+
+3. **Order Cancelled** (Customer)
+   - Confirmation of cancellation
+   - Refund amount and processing time
+
+4. **New Order Alert** (Admin)
+   - Instant notification when customer places order
+   - Includes customer details and order summary
+
+5. **Password Reset** (Customer)
+   - Secure token-based reset link
+   - Expires after 30 minutes
+
+---
+
+## 🎨 UI Features
+
+### Theme Toggle
+- Light/Dark mode switch with localStorage persistence
+- 🌙/☀️ button in navbar
+- Smooth transitions between themes
+
+### Animations
+- Card lift on hover (translateY -10px)
+- Button press effects
+- Image zoom on hover (scale 1.05)
+- Smooth color transitions
+
+### Responsive Design
+- Mobile-first Bootstrap 5.3 implementation
+- Card-based product layout (4 columns → 1 column)
+- Responsive navbar with dropdown menu
+- Touch-friendly buttons and forms
+
+### Visual Feedback
+- Flash messages with color coding (success, warning, danger, info)
+- Status badges (⏳ Pending / 🚚 Shipped / ❌ Cancelled)
+- Star ratings (⭐⭐⭐⭐⭐)
+- Empty state messages
+- Loading indicators
+
+---
+
+## 🛠️ Advanced Features
+
+### Coupon System
+- Admin can create discount codes at `/admin/coupons`
+- Percentage-based discounts (e.g., SAVE20 = 20% off)
+- Case-insensitive code validation
+- Session-based coupon storage
+- Discount amount tracked in orders
+
+### Search Analytics
+- Tracks all search queries in SearchTerm table
+- Counts frequency of each search term
+- Displays top 5 searches in admin dashboard
+- Case-insensitive term matching
+
+### Wishlist System
+- Many-to-many relationship (User ↔ Product)
+- Add/remove products from wishlist
+- View all wishlist items at `/wishlist`
+- Paginated wishlist display
+
+### Multi-Image Gallery
+- Admin can upload multiple images per product
+- Bootstrap 5 carousel on product detail page
+- Cloudinary-hosted images
+- Delete individual gallery images
+
+### PDF Invoices
+- Generated with xhtml2pdf library
+- Custom HTML template (invoice.html)
+- Attached to order confirmation emails
+- Includes order details, items, and totals
+
+### CSV Export
+- Export all orders to spreadsheet
+- Includes customer info, items, and status
+- Handles deleted users and products gracefully
+- Download at `/admin/export_csv`
+
+---
+
+## 🐛 Error Handling
+
+### User-Friendly Messages
+- Flash messages for all user actions
+- Graceful handling of deleted users/products
+- Empty state messages (no cart items, no reviews, etc.)
+- Form validation errors displayed inline
+
+### Database Safety
+- Cascade delete for product reviews
+- Soft delete for user accounts
+- Price snapshots prevent orphaned order items
+- Handles missing relationships (deleted products in orders)
+
+### Email Failures
+- Try/except blocks around all email sends
+- Flash warnings if email fails (doesn't crash app)
+- Continues order processing even if email fails
+
+---
+
+## 🚀 Deployment
+
+### Production Checklist
+1. Set `SECRET_KEY` to a strong random value
+2. Change `DB_URI` to PostgreSQL (e.g., Heroku Postgres)
+3. Set `DEBUG=False` in Flask config
+4. Use environment variables for all credentials
+5. Configure Cloudinary for image hosting
+6. Set up Gmail App Password for email
+7. Use gunicorn as WSGI server (included in requirements.txt)
+
+### Heroku Deployment
+```bash
+# Install Heroku CLI and login
+heroku login
+
+# Create new app
+heroku create your-app-name
+
+# Add PostgreSQL
+heroku addons:create heroku-postgresql:hobby-dev
+
+# Set environment variables
+heroku config:set SECRET_KEY=your-secret-key
+heroku config:set CLOUDINARY_CLOUD_NAME=your-cloud-name
+heroku config:set CLOUDINARY_API_KEY=your-api-key
+heroku config:set CLOUDINARY_API_SECRETS=your-api-secret
+heroku config:set EMAIL_USER=your-email
+heroku config:set EMAIL_PASS=your-app-password
+
+# Deploy
+git push heroku main
+
+# Initialize database
+heroku run python
+>>> from server import app, db
+>>> with app.app_context():
+...     db.create_all()
+>>> exit()
+```
+
+---
+
+## 📝 License
+
+MIT License - Feel free to use this project for learning or portfolio purposes.
+
+---
+
+## 👨‍💻 Author
+
+Built as part of the **100 Days of Code: Python** challenge (Day 97).
+
+**Project Highlights:**
+- 1000+ lines of Python code
+- 15 HTML templates with Jinja2
+- 7 database tables with relationships
+- 40+ routes and endpoints
+- Full CRUD operations
+- User authentication and authorization
+- Email automation with attachments
+- Cloud image hosting
+- Data visualization with Chart.js
+- CSV export functionality
+- PDF generation
+- Responsive design with Bootstrap 5
+
+---
+
+## 🙏 Acknowledgments
+
+- **Flask Documentation** - Comprehensive web framework guide
+- **SQLAlchemy** - Powerful ORM for database management
+- **Bootstrap 5** - Responsive UI framework
+- **Cloudinary** - Cloud image hosting and transformation
+- **Chart.js** - Beautiful data visualization
+- **100 Days of Code** - Structured learning path
+
+---
+
+## 📞 Support
+
+If you encounter any issues or have questions:
+1. Check the `.env` file is properly configured
+2. Ensure all dependencies are installed (`pip install -r requirements.txt`)
+3. Verify database is initialized (`db.create_all()`)
+4. Check Gmail App Password is correctly set
+5. Ensure Cloudinary credentials are valid
+
+---
+
+<div align="center">
+
+**⭐ Star this project if you found it helpful! ⭐**
+
+Built with ❤️ using Flask, SQLAlchemy, and Bootstrap
+
+</divdress@gmail.com
 EMAIL_PASS=your-gmail-app-password
 ```
 
