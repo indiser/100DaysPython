@@ -1,4 +1,4 @@
-# 🎌 Day 96: Manga/Comic API - Advanced Web Scraping & REST API
+# 🎌 Day 96: Manga Website
 
 > **Part of 100 Days of Python Challenge - Professional Portfolio Projects (Days 82-100)**
 
