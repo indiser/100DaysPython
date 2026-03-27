@@ -367,14 +367,14 @@ nhentai-website/
 
 ## 🏆 Day 96 Achievements
 
-✅ Built complete REST API with 5 endpoints
-✅ Implemented Cloudflare bypass successfully
-✅ Created image-to-PDF conversion pipeline
-✅ Designed responsive single-page application
-✅ Added threaded cleanup operations
-✅ Handled 10+ edge cases and errors
-✅ Integrated search and recommendation systems
-✅ Optimized for production deployment
+- ✅ Built complete REST API with 5 endpoints
+- ✅ Implemented Cloudflare bypass successfully
+- ✅ Created image-to-PDF conversion pipeline
+- ✅ Designed responsive single-page application
+- ✅ Added threaded cleanup operations
+- ✅ Handled 10+ edge cases and errors
+- ✅ Integrated search and recommendation systems
+- ✅ Optimized for production deployment
 
 ## 📈 Complexity Metrics
 
@@ -422,7 +422,7 @@ After mastering web scraping and API development in Day 96, Day 97 takes it furt
 - Added Gunicorn
 - Still broke
 - Gave up, runs on localhost
-- Just kidding. Programmers never Give up. <a href="https://hentai-manga.onrender.com">Link</a>
+- Just kidding. Programmers never Give up. <a href="https://hmanga.onrender.com">Link</a>
 
 ---
 
