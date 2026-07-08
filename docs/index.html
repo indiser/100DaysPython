@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Primary Meta -->
+  <title>100 Days of Python — Professional Engineering Journey</title>
+  <meta name="description" content="A 100-day journey from Python beginner to professional developer. 150+ projects spanning full-stack web apps, automation bots, REST APIs, data science, ML, and more." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://indiser.github.io/100days-python/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="100 Days of Python — Professional Engineering Journey" />
+  <meta property="og:description" content="150+ projects across full-stack web, automation, data science, ML, and REST APIs." />
+  <meta property="og:url"         content="https://indiser.github.io/100days-python/" />
+  <meta property="og:site_name"   content="100 Days of Python" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="100 Days of Python — Professional Engineering Journey" />
+  <meta name="twitter:description" content="150+ projects across full-stack web, automation, data science, and ML." />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "indiser",
+    "url": "https://indiser.github.io/100days-python/",
+    "description": "Python developer who completed the 100 Days of Code challenge, building 150+ projects.",
+    "knowsAbout": ["Python", "Flask", "FastAPI", "SQLAlchemy", "Data Science", "Machine Learning", "Web Scraping", "Automation"],
+    "sameAs": ["https://github.com/indiser"]
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- CSS — Modular -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+     NAVIGATION — Neo-Brutalist sticky bar
+════════════════════════════════════ -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container nav-inner">
+
+    <a href="#home" class="nav-logo" aria-label="Home — 100 Days of Python">
+      <div class="nav-logo-icon" aria-hidden="true">🐍</div>
+      <span>100DaysPython</span>
+    </a>
+
+    <div class="nav-links" role="menubar">
+      <a class="nav-link active" href="#home"        role="menuitem">Home</a>
+      <a class="nav-link"        href="#journey"     role="menuitem">Journey</a>
+      <a class="nav-link"        href="#projects"    role="menuitem">Projects</a>
+      <a class="nav-link"        href="#skills"      role="menuitem">Skills</a>
+      <a class="nav-link"        href="#technologies"role="menuitem">Tech</a>
+      <a class="nav-link"        href="#statistics"  role="menuitem">Stats</a>
+      <a class="nav-link"        href="#timeline"    role="menuitem">Timeline</a>
+      <a class="nav-link"        href="#resources"   role="menuitem">Resources</a>
+    </div>
+
+    <div class="nav-cta">
+      <a href="https://github.com/indiser/100DaysPython"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn-primary btn-sm"
+         aria-label="View on GitHub">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+
+    <button class="hamburger" id="hamburger"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+            aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</nav>
+
+<!-- Mobile Navigation -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+  <a class="mobile-nav-link" href="#home">🏠 Home</a>
+  <a class="mobile-nav-link" href="#journey">🗺️ Journey</a>
+  <a class="mobile-nav-link" href="#projects">🚀 Projects</a>
+  <a class="mobile-nav-link" href="#skills">⚡ Skills</a>
+  <a class="mobile-nav-link" href="#technologies">🛠️ Technologies</a>
+  <a class="mobile-nav-link" href="#statistics">📊 Statistics</a>
+  <a class="mobile-nav-link" href="#timeline">📅 Timeline</a>
+  <a class="mobile-nav-link" href="#resources">📚 Resources</a>
+  <div style="margin-top:var(--space-6);padding-top:var(--space-6);border-top:3px solid var(--border)">
+    <a href="https://github.com/indiser/100DaysPython"
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn-primary"
+       style="width:100%;justify-content:center">
+      View on GitHub →
+    </a>
+  </div>
+</div>
+
+
+<main id="main">
+
+<!-- ════════════════════════════════════
+     HERO — Neo-Brutalist split layout
+════════════════════════════════════ -->
+<section id="home" aria-labelledby="hero-heading" style="position:relative;overflow:hidden;background:var(--bg-primary);border-bottom:3px solid var(--border)">
+
+  <!-- JS canvas (hidden in Neo-Brutalist design, kept for JS compatibility) -->
+  <canvas id="particles-canvas" aria-hidden="true" style="display:none"></canvas>
+
+  <div class="hero">
+    <!-- Left: Text content -->
+    <div class="hero-text">
+
+      <div class="hero-badge" aria-label="Journey status">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        100/100 Days Complete &mdash; Journey Finished 🎉
+      </div>
+
+      <h1 id="hero-heading" class="hero-headline">
+        100 Days.<br>
+        <span class="text-accent-red">150+ Projects.</span><br>
+        One Journey.
+      </h1>
+
+      <p class="hero-subtitle">
+        From <code>print("Hello, World!")</code> to production-ready e-commerce,
+        AI automation pipelines, and data science capstones.
+      </p>
+
+      <div class="typing-line" style="font-size:var(--text-lg);font-weight:700;color:var(--text-primary);margin-bottom:var(--space-4)">
+        Currently mastering:&nbsp;<span id="hero-typing" style="color:var(--accent-red)"></span><span class="typing-cursor" aria-hidden="true"></span>
+      </div>
+
+      <div class="cta-group">
+        <a href="#journey" class="btn btn-primary btn-lg">
+          Explore Journey →
+        </a>
+        <a href="#projects" class="btn btn-accent-yellow btn-lg">
+          View Projects
+        </a>
+        <a href="https://github.com/indiser/100DaysPython"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn-secondary btn-lg"
+           aria-label="View GitHub Repository">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Right: Terminal card + geometric shapes -->
+    <div class="hero-visual" aria-hidden="true">
+      <!-- CSS geometric shapes -->
+      <div class="geo-shape geo-circle-lg"></div>
+      <div class="geo-shape geo-square"></div>
+      <div class="geo-shape geo-circle-sm"></div>
+      <div class="geo-shape geo-blob"></div>
+      <div class="geo-dot-grid"></div>
+
+      <!-- Terminal-style stats card (no JS needed) -->
+      <div class="hero-terminal" style="position:relative;z-index:2">
+        <div class="hero-terminal-header">
+          <div class="terminal-dot-red"></div>
+          <div class="terminal-dot-yellow"></div>
+          <div class="terminal-dot-green"></div>
+          <span style="font-size:0.7rem;color:rgba(255,255,255,0.4);margin-left:var(--space-3)">journey.py</span>
+        </div>
+        <div class="hero-terminal-body">
+          <div class="terminal-row">
+            <span class="terminal-row-label"># Days completed</span>
+            <span class="terminal-row-value">100 / 100 ✓</span>
+          </div>
+          <div class="terminal-row">
+            <span class="terminal-row-label">projects_built</span>
+            <span class="terminal-row-value">150+</span>
+          </div>
+          <div class="terminal-row">
+            <span class="terminal-row-label">libraries_used</span>
+            <span class="terminal-row-value">35+</span>
+          </div>
+          <div class="terminal-row">
+            <span class="terminal-row-label">apis_integrated</span>
+            <span class="terminal-row-value">25+</span>
+          </div>
+          <div class="terminal-row">
+            <span class="terminal-row-label">web_apps</span>
+            <span class="terminal-row-value">20+</span>
+          </div>
+          <div class="terminal-row">
+            <span class="terminal-row-label">automation_bots</span>
+            <span class="terminal-row-value">10+</span>
+          </div>
+          <div class="terminal-row">
+            <span class="terminal-row-label">status</span>
+            <span class="terminal-row-value yellow">🏆 PROFESSIONAL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     STATISTICS — Colorful pastel blocks
+════════════════════════════════════ -->
+<section id="statistics" class="section section-alt" aria-labelledby="stats-heading">
+  <div class="container">
+
+    <div class="section-header centered reveal">
+      <div class="nb-label">📊 By The Numbers</div>
+      <h2 id="stats-heading">100-Day Dashboard</h2>
+      <p style="max-width:520px;margin-top:var(--space-3)">Every number represents real code written, real problems solved, real skills earned.</p>
+    </div>
+
+    <div class="stats-grid" data-stagger>
+
+      <div class="stat-card stat-green reveal delay-100" data-stagger-item>
+        <span class="stat-card-icon" aria-hidden="true">📅</span>
+        <span class="stat-card-number" id="stat-days">100</span>
+        <div class="stat-card-label">Days Completed</div>
+      </div>
+
+      <div class="stat-card stat-blue reveal delay-150" data-stagger-item>
+        <span class="stat-card-icon" aria-hidden="true">🚀</span>
+        <span class="stat-card-number" id="stat-projects">150+</span>
+        <div class="stat-card-label">Projects Built</div>
+      </div>
+
+      <div class="stat-card stat-yellow reveal delay-200" data-stagger-item>
+        <span class="stat-card-icon" aria-hidden="true">📦</span>
+        <span class="stat-card-number" id="stat-libraries">35+</span>
+        <div class="stat-card-label">Libraries Used</div>
+      </div>
+
+      <div class="stat-card stat-purple reveal delay-300" data-stagger-item>
+        <span class="stat-card-icon" aria-hidden="true">🔌</span>
+        <span class="stat-card-number" id="stat-apis">25+</span>
+        <div class="stat-card-label">APIs Integrated</div>
+      </div>
+
+      <div class="stat-card stat-orange reveal delay-100" data-stagger-item>
+        <span class="stat-card-icon" aria-hidden="true">🌐</span>
+        <span class="stat-card-number" id="stat-webapps">20+</span>
+        <div class="stat-card-label">Web Applications</div>
+      </div>
+
+      <div class="stat-card stat-pink reveal delay-150" data-stagger-item>
+        <span class="stat-card-icon" aria-hidden="true">🤖</span>
+        <span class="stat-card-number" id="stat-bots">10+</span>
+        <div class="stat-card-label">Automation Bots</div>
+      </div>
+
+      <div class="stat-card stat-red reveal delay-200" data-stagger-item>
+        <span class="stat-card-icon" aria-hidden="true">🏆</span>
+        <span class="stat-card-number" id="stat-capstone">5</span>
+        <div class="stat-card-label">Capstone Projects</div>
+      </div>
+
+      <div class="stat-card stat-dark reveal delay-300" data-stagger-item>
+        <span class="stat-card-icon" aria-hidden="true">✅</span>
+        <span class="stat-card-number" id="stat-completion">100%</span>
+        <div class="stat-card-label">Completion Rate</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     LEARNING JOURNEY — Interactive timeline
+════════════════════════════════════ -->
+<section id="journey" class="section" aria-labelledby="journey-heading">
+  <div class="container">
+
+    <div style="display:grid;grid-template-columns:340px 1fr;gap:var(--space-16);align-items:start" class="reveal">
+
+      <!-- Left: Description -->
+      <div class="section-header" style="max-width:100%;margin-bottom:0">
+        <div class="nb-label">🗺️ Learning Journey</div>
+        <h2 id="journey-heading">Beginner<br>to Pro</h2>
+        <div class="accent-line"></div>
+        <p>Five distinct phases, each building on the last. Click any phase to explore skills, projects &amp; milestones.</p>
+
+        <div class="journey-phase-list" style="margin-top:var(--space-8)">
+          <div class="journey-phase-item">
+            <div class="journey-phase-dot" style="background:var(--pastel-green)"></div>
+            <span>Days 1–14: Beginner Foundations</span>
+          </div>
+          <div class="journey-phase-item">
+            <div class="journey-phase-dot" style="background:var(--pastel-blue)"></div>
+            <span>Days 15–31: OOP &amp; GUI</span>
+          </div>
+          <div class="journey-phase-item">
+            <div class="journey-phase-dot" style="background:var(--pastel-purple)"></div>
+            <span>Days 32–58: APIs &amp; Automation</span>
+          </div>
+          <div class="journey-phase-item">
+            <div class="journey-phase-dot" style="background:var(--pastel-red)"></div>
+            <span>Days 59–81: Full-Stack &amp; Data</span>
+          </div>
+          <div class="journey-phase-item">
+            <div class="journey-phase-dot" style="background:var(--pastel-yellow)"></div>
+            <span>Days 82–100: Professional</span>
+          </div>
+        </div>
+
+        <!-- Quick stat -->
+        <div class="card" style="margin-top:var(--space-8);background:var(--text-primary);color:var(--bg-primary);padding:var(--space-5)">
+          <div style="font-size:var(--text-3xl);font-weight:900;letter-spacing:-0.03em;color:var(--bg-primary)">100%</div>
+          <div style="font-size:var(--text-sm);font-weight:700;color:rgba(248,246,241,0.7);text-transform:uppercase;letter-spacing:0.08em">Journey Complete ✓</div>
+        </div>
+      </div>
+
+      <!-- Right: Timeline (populated by timeline.js) -->
+      <div>
+        <div class="timeline" id="journey-timeline" role="list" aria-label="Learning journey timeline">
+          <!-- Populated by timeline.js -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     FEATURED PROJECTS — Large cards
+════════════════════════════════════ -->
+<section id="projects" class="section section-alt" aria-labelledby="projects-heading">
+  <div class="container">
+
+    <div class="section-header centered reveal">
+      <div class="nb-label">🚀 Featured Work</div>
+      <h2 id="projects-heading">Top Projects</h2>
+      <p style="max-width:540px;margin-top:var(--space-3)">Hand-picked highlights from 150+ projects — from production e-commerce to AI automation pipelines.</p>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap reveal">
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <label for="search-input" class="sr-only">Search projects</label>
+      <input id="search-input" type="search"
+             placeholder="Search projects, tech, concepts…"
+             autocomplete="off" />
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-group reveal" role="group" aria-label="Filter by category">
+      <button class="filter-btn active" data-filter="all"        aria-pressed="true">All</button>
+      <button class="filter-btn"        data-filter="web"        aria-pressed="false">🌐 Web Apps</button>
+      <button class="filter-btn"        data-filter="automation" aria-pressed="false">🤖 Automation</button>
+      <button class="filter-btn"        data-filter="api"        aria-pressed="false">🔌 APIs</button>
+      <button class="filter-btn"        data-filter="data"       aria-pressed="false">📊 Data Science</button>
+      <button class="filter-btn"        data-filter="game"       aria-pressed="false">🎮 Games</button>
+      <button class="filter-btn"        data-filter="gui"        aria-pressed="false">🖥️ GUI Apps</button>
+      <button class="filter-btn"        data-filter="ml"         aria-pressed="false">🧠 AI / ML</button>
+    </div>
+
+    <!-- Project Cards Grid -->
+    <div class="grid-auto" id="projects-grid" aria-label="Project cards">
+
+      <!-- The Fake Shop -->
+      <article class="project-card reveal"
+               data-project
+               data-title="the fake shop e-commerce"
+               data-tags="flask sqlalchemy flask-login bootstrap cloudinary chart.js"
+               data-category="web">
+        <div class="project-card-stripe stripe-web"></div>
+        <div class="project-card-thumb" style="background:var(--pastel-yellow)">
+          <div class="project-card-thumb-inner">🛒</div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-card-meta">
+            <span class="badge badge-amber">Day 97</span>
+            <span class="badge badge-red">Capstone</span>
+          </div>
+          <h3 class="project-card-title">The Fake Shop</h3>
+          <p class="project-card-desc">Production-ready e-commerce with user authentication, shopping cart, admin dashboard with Chart.js analytics, product reviews, and Cloudinary image hosting.</p>
+          <div class="project-card-tech">
+            <span class="tech-tag">Flask 3.0</span>
+            <span class="tech-tag">SQLAlchemy</span>
+            <span class="tech-tag">Flask-Login</span>
+            <span class="tech-tag">Cloudinary</span>
+            <span class="tech-tag">Chart.js</span>
+          </div>
+          <div class="project-card-footer">
+            <a href="https://github.com/indiser/100DaysPython/tree/main/Professional%20Portfolio%20Project/Day97"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary btn-sm">View Code →</a>
+            <span class="badge badge-green">Full-Stack</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Viral Content Factory -->
+      <article class="project-card reveal delay-100"
+               data-project
+               data-title="viral content factory social media"
+               data-tags="reddit instagram youtube instagrapi tts video llm ai automation"
+               data-category="automation">
+        <div class="project-card-stripe stripe-automation"></div>
+        <div class="project-card-thumb" style="background:var(--pastel-green)">
+          <div class="project-card-thumb-inner">🎬</div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-card-meta">
+            <span class="badge badge-amber">Day 98</span>
+            <span class="badge badge-red">Capstone</span>
+          </div>
+          <h3 class="project-card-title">Viral Content Factory</h3>
+          <p class="project-card-desc">Multi-platform social media automation: Reddit scraping → AI content generation → TTS audio → video composition → Instagram &amp; YouTube auto-posting.</p>
+          <div class="project-card-tech">
+            <span class="tech-tag">Reddit API</span>
+            <span class="tech-tag">instagrapi</span>
+            <span class="tech-tag">LLM Router</span>
+            <span class="tech-tag">TTS</span>
+            <span class="tech-tag">Video</span>
+          </div>
+          <div class="project-card-footer">
+            <a href="https://github.com/indiser/100DaysPython/tree/main/Professional%20Portfolio%20Project/Day98"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary btn-sm">View Code →</a>
+            <span class="badge badge-purple">AI Pipeline</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Manga API -->
+      <article class="project-card reveal delay-200"
+               data-project
+               data-title="manga api fastapi scraper"
+               data-tags="fastapi async curl_cffi beautifulsoup swagger rest cloudflare"
+               data-category="api">
+        <div class="project-card-stripe stripe-api"></div>
+        <div class="project-card-thumb" style="background:var(--pastel-blue)">
+          <div class="project-card-thumb-inner">📚</div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-card-meta">
+            <span class="badge badge-blue">Day 95–96</span>
+            <span class="badge badge-green">API</span>
+          </div>
+          <h3 class="project-card-title">Manga API</h3>
+          <p class="project-card-desc">Async REST API with FastAPI. Cloudflare bypass, manga metadata extraction, image URL generation, PDF creation, and Swagger docs.</p>
+          <div class="project-card-tech">
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">async/await</span>
+            <span class="tech-tag">curl_cffi</span>
+            <span class="tech-tag">BeautifulSoup</span>
+            <span class="tech-tag">img2pdf</span>
+          </div>
+          <div class="project-card-footer">
+            <a href="https://github.com/indiser/100DaysPython/tree/main/Professional%20Portfolio%20Project/Day95"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary btn-sm">View Code →</a>
+            <span class="badge badge-blue">REST API</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Multi-User Blog -->
+      <article class="project-card reveal delay-300"
+               data-project
+               data-title="multi user blog platform"
+               data-tags="flask sqlalchemy flask-login flask-ckeditor gravatar authentication admin"
+               data-category="web">
+        <div class="project-card-stripe stripe-web"></div>
+        <div class="project-card-thumb" style="background:var(--pastel-orange)">
+          <div class="project-card-thumb-inner">✍️</div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-card-meta">
+            <span class="badge badge-amber">Day 69</span>
+            <span class="badge badge-red">Capstone</span>
+          </div>
+          <h3 class="project-card-title">Multi-User Blog</h3>
+          <p class="project-card-desc">Complete CMS with user authentication, relational database (Users, Posts, Comments), admin features, Gravatar, and CKEditor rich text.</p>
+          <div class="project-card-tech">
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">SQLAlchemy</span>
+            <span class="tech-tag">Flask-Login</span>
+            <span class="tech-tag">CKEditor</span>
+            <span class="tech-tag">Gravatar</span>
+          </div>
+          <div class="project-card-footer">
+            <a href="https://github.com/indiser/100DaysPython/tree/main/Advanced/Day69"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary btn-sm">View Code →</a>
+            <span class="badge badge-purple">Full-Stack</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Police Shootings Analysis -->
+      <article class="project-card reveal delay-100"
+               data-project
+               data-title="police shootings data analysis"
+               data-tags="pandas numpy matplotlib seaborn jupyter data science csv"
+               data-category="data">
+        <div class="project-card-stripe stripe-data"></div>
+        <div class="project-card-thumb" style="background:var(--pastel-blue)">
+          <div class="project-card-thumb-inner">📊</div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-card-meta">
+            <span class="badge badge-blue">Day 100</span>
+            <span class="badge badge-red">Final Capstone</span>
+          </div>
+          <h3 class="project-card-title">Police Shootings Analysis</h3>
+          <p class="project-card-desc">Social impact data science capstone. Multiple datasets, advanced Pandas operations, data merging, statistical analysis, and visualization of findings.</p>
+          <div class="project-card-tech">
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+            <span class="tech-tag">Matplotlib</span>
+            <span class="tech-tag">Seaborn</span>
+            <span class="tech-tag">Jupyter</span>
+          </div>
+          <div class="project-card-footer">
+            <a href="https://github.com/indiser/100DaysPython/tree/main/Professional%20Portfolio%20Project/Day100"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary btn-sm">View Code →</a>
+            <span class="badge badge-green">Data Science</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Chrome Dino Bot -->
+      <article class="project-card reveal delay-200"
+               data-project
+               data-title="chrome dino bot computer vision"
+               data-tags="pyautogui pillow imagegrab pixel detection automation"
+               data-category="automation">
+        <div class="project-card-stripe stripe-automation"></div>
+        <div class="project-card-thumb" style="background:var(--pastel-green)">
+          <div class="project-card-thumb-inner">🦕</div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-card-meta">
+            <span class="badge badge-amber">Day 94</span>
+            <span class="badge badge-green">Computer Vision</span>
+          </div>
+          <h3 class="project-card-title">Chrome Dino Bot</h3>
+          <p class="project-card-desc">Computer vision game automation: real-time screen capture, pixel detection for cacti and birds, automatic jump/duck at 60+ FPS.</p>
+          <div class="project-card-tech">
+            <span class="tech-tag">PyAutoGUI</span>
+            <span class="tech-tag">PIL/Pillow</span>
+            <span class="tech-tag">ImageGrab</span>
+            <span class="tech-tag">CV Logic</span>
+          </div>
+          <div class="project-card-footer">
+            <a href="https://github.com/indiser/100DaysPython/tree/main/Professional%20Portfolio%20Project/Day94"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary btn-sm">View Code →</a>
+            <span class="badge badge-purple">Vision</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Tic Tac Toe AI -->
+      <article class="project-card reveal delay-300"
+               data-project
+               data-title="tic tac toe ai minimax"
+               data-tags="minimax alpha-beta pruning algorithm ai game terminal"
+               data-category="game ml">
+        <div class="project-card-stripe stripe-ml"></div>
+        <div class="project-card-thumb" style="background:var(--pastel-purple)">
+          <div class="project-card-thumb-inner">🎮</div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-card-meta">
+            <span class="badge badge-amber">Day 84</span>
+            <span class="badge badge-purple">AI</span>
+          </div>
+          <h3 class="project-card-title">Tic Tac Toe AI</h3>
+          <p class="project-card-desc">Unbeatable AI using Minimax algorithm with Alpha-Beta pruning. Move ordering, depth-based scoring, colored terminal UI.</p>
+          <div class="project-card-tech">
+            <span class="tech-tag">Minimax</span>
+            <span class="tech-tag">Alpha-Beta</span>
+            <span class="tech-tag">Recursion</span>
+            <span class="tech-tag">Game Theory</span>
+          </div>
+          <div class="project-card-footer">
+            <a href="https://github.com/indiser/100DaysPython/tree/main/Professional%20Portfolio%20Project/Day84"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary btn-sm">View Code →</a>
+            <span class="badge badge-purple">AI</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Snake Game -->
+      <article class="project-card reveal delay-100"
+               data-project
+               data-title="snake game arcade oop"
+               data-tags="turtle graphics oop collision detection high score snake game"
+               data-category="game">
+        <div class="project-card-stripe stripe-game"></div>
+        <div class="project-card-thumb" style="background:var(--pastel-orange)">
+          <div class="project-card-thumb-inner">🐍</div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-card-meta">
+            <span class="badge badge-amber">Day 20–21</span>
+            <span class="badge badge-green">Game</span>
+          </div>
+          <h3 class="project-card-title">Snake Game</h3>
+          <p class="project-card-desc">Classic arcade game with multi-file OOP design. Collision detection (walls, food, tail), persistent high score, and smooth movement.</p>
+          <div class="project-card-tech">
+            <span class="tech-tag">Turtle</span>
+            <span class="tech-tag">OOP</span>
+            <span class="tech-tag">File I/O</span>
+            <span class="tech-tag">Game Loop</span>
+          </div>
+          <div class="project-card-footer">
+            <a href="https://github.com/indiser/100DaysPython/tree/main/Intermediate/Day20"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary btn-sm">View Code →</a>
+            <span class="badge badge-green">Game</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Password Manager -->
+      <article class="project-card reveal delay-200"
+               data-project
+               data-title="password manager tkinter gui"
+               data-tags="tkinter gui json pyperclip password generator clipboard"
+               data-category="gui">
+        <div class="project-card-stripe stripe-gui"></div>
+        <div class="project-card-thumb" style="background:var(--pastel-purple)">
+          <div class="project-card-thumb-inner">🔐</div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-card-meta">
+            <span class="badge badge-amber">Day 29</span>
+            <span class="badge badge-blue">GUI</span>
+          </div>
+          <h3 class="project-card-title">Password Manager</h3>
+          <p class="project-card-desc">Secure password storage with random generation, clipboard copy, JSON persistence, and search. Full Tkinter GUI.</p>
+          <div class="project-card-tech">
+            <span class="tech-tag">Tkinter</span>
+            <span class="tech-tag">JSON</span>
+            <span class="tech-tag">pyperclip</span>
+            <span class="tech-tag">Random</span>
+          </div>
+          <div class="project-card-footer">
+            <a href="https://github.com/indiser/100DaysPython/tree/main/Intermediate/Day29"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-primary btn-sm">View Code →</a>
+            <span class="badge badge-blue">GUI</span>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /projects-grid -->
+
+    <!-- No Results -->
+    <div id="no-results" style="display:none">
+      <div style="font-size:3rem;margin-bottom:var(--space-4)">🔎</div>
+      <div style="font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-2)">No projects found</div>
+      <div>Try a different search term or filter.</div>
+    </div>
+
+    <div style="text-align:center;margin-top:var(--space-12)" class="reveal">
+      <a href="https://github.com/indiser/100DaysPython"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn-primary btn-lg">
+        View All 150+ Projects on GitHub →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     SKILLS DASHBOARD — Tabs + progress bars
+════════════════════════════════════ -->
+<section id="skills" class="section" aria-labelledby="skills-heading">
+  <div class="container">
+
+    <div class="section-header centered reveal">
+      <div class="nb-label">⚡ Skills</div>
+      <h2 id="skills-heading">Technical Proficiency</h2>
+      <p style="max-width:500px;margin-top:var(--space-3)">Skills forged through 100 days of daily projects, debugging, and real problem-solving.</p>
+    </div>
+
+    <div class="skills-layout reveal">
+
+      <!-- Sidebar Tabs -->
+      <nav class="skills-sidebar" role="tablist" aria-label="Skill categories">
+        <button class="skill-tab active" role="tab" data-target="skills-python"  aria-selected="true">
+          <span class="skill-tab-icon" aria-hidden="true">🐍</span> Python Core
+        </button>
+        <button class="skill-tab" role="tab" data-target="skills-web"     aria-selected="false">
+          <span class="skill-tab-icon" aria-hidden="true">🌐</span> Web Dev
+        </button>
+        <button class="skill-tab" role="tab" data-target="skills-data"    aria-selected="false">
+          <span class="skill-tab-icon" aria-hidden="true">📊</span> Data Science
+        </button>
+        <button class="skill-tab" role="tab" data-target="skills-auto"    aria-selected="false">
+          <span class="skill-tab-icon" aria-hidden="true">🤖</span> Automation
+        </button>
+        <button class="skill-tab" role="tab" data-target="skills-gui"     aria-selected="false">
+          <span class="skill-tab-icon" aria-hidden="true">🖥️</span> GUI Dev
+        </button>
+        <button class="skill-tab" role="tab" data-target="skills-api"     aria-selected="false">
+          <span class="skill-tab-icon" aria-hidden="true">🔌</span> APIs
+        </button>
+      </nav>
+
+      <!-- Skill Panels -->
+      <div>
+
+        <!-- Python Core -->
+        <div class="skill-panel" id="skills-python" role="tabpanel">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Python Fundamentals</span>
+              <div class="skill-meta"><span class="skill-pct">98%</span><span class="badge badge-green">Expert</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="98"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Object-Oriented Programming</span>
+              <div class="skill-meta"><span class="skill-pct">92%</span><span class="badge badge-green">Expert</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Error Handling &amp; Debugging</span>
+              <div class="skill-meta"><span class="skill-pct">90%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Decorators &amp; Meta-programming</span>
+              <div class="skill-meta"><span class="skill-pct">80%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Async / Await</span>
+              <div class="skill-meta"><span class="skill-pct">75%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">File I/O (CSV, JSON, PDF)</span>
+              <div class="skill-meta"><span class="skill-pct">95%</span><span class="badge badge-green">Expert</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+        </div>
+
+        <!-- Web Dev -->
+        <div class="skill-panel" id="skills-web" role="tabpanel" style="display:none">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Flask Framework</span>
+              <div class="skill-meta"><span class="skill-pct">92%</span><span class="badge badge-green">Expert</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">SQLAlchemy ORM</span>
+              <div class="skill-meta"><span class="skill-pct">88%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Flask-Login Authentication</span>
+              <div class="skill-meta"><span class="skill-pct">85%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">FastAPI (async)</span>
+              <div class="skill-meta"><span class="skill-pct">78%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Jinja2 Templating</span>
+              <div class="skill-meta"><span class="skill-pct">88%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">RESTful API Design</span>
+              <div class="skill-meta"><span class="skill-pct">85%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+        </div>
+
+        <!-- Data Science -->
+        <div class="skill-panel" id="skills-data" role="tabpanel" style="display:none">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Pandas DataFrames</span>
+              <div class="skill-meta"><span class="skill-pct">88%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">NumPy</span>
+              <div class="skill-meta"><span class="skill-pct">80%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Matplotlib &amp; Seaborn</span>
+              <div class="skill-meta"><span class="skill-pct">82%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Plotly Interactive Charts</span>
+              <div class="skill-meta"><span class="skill-pct">75%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Linear / Multivariable Regression</span>
+              <div class="skill-meta"><span class="skill-pct">72%</span><span class="badge badge-amber">Proficient</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="72"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Jupyter Notebooks</span>
+              <div class="skill-meta"><span class="skill-pct">85%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+        </div>
+
+        <!-- Automation -->
+        <div class="skill-panel" id="skills-auto" role="tabpanel" style="display:none">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">BeautifulSoup (Web Scraping)</span>
+              <div class="skill-meta"><span class="skill-pct">90%</span><span class="badge badge-green">Expert</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Selenium Browser Automation</span>
+              <div class="skill-meta"><span class="skill-pct">85%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">PyAutoGUI (GUI Automation)</span>
+              <div class="skill-meta"><span class="skill-pct">80%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">SMTP Email Automation</span>
+              <div class="skill-meta"><span class="skill-pct">88%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">curl_cffi (Cloudflare Bypass)</span>
+              <div class="skill-meta"><span class="skill-pct">75%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Social Media Automation</span>
+              <div class="skill-meta"><span class="skill-pct">78%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
+          </div>
+        </div>
+
+        <!-- GUI Dev -->
+        <div class="skill-panel" id="skills-gui" role="tabpanel" style="display:none">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Tkinter</span>
+              <div class="skill-meta"><span class="skill-pct">88%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Turtle Graphics</span>
+              <div class="skill-meta"><span class="skill-pct">85%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Pygame</span>
+              <div class="skill-meta"><span class="skill-pct">72%</span><span class="badge badge-amber">Proficient</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="72"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">ttkbootstrap</span>
+              <div class="skill-meta"><span class="skill-pct">75%</span><span class="badge badge-amber">Proficient</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">PIL / Pillow (Image Processing)</span>
+              <div class="skill-meta"><span class="skill-pct">80%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Canvas &amp; Animations</span>
+              <div class="skill-meta"><span class="skill-pct">82%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+          </div>
+        </div>
+
+        <!-- APIs -->
+        <div class="skill-panel" id="skills-api" role="tabpanel" style="display:none">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">REST API Consumption</span>
+              <div class="skill-meta"><span class="skill-pct">95%</span><span class="badge badge-green">Expert</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">OAuth Authentication</span>
+              <div class="skill-meta"><span class="skill-pct">80%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Spotify API (Spotipy)</span>
+              <div class="skill-meta"><span class="skill-pct">78%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Twilio SMS API</span>
+              <div class="skill-meta"><span class="skill-pct">80%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Cloudinary Cloud API</span>
+              <div class="skill-meta"><span class="skill-pct">82%</span><span class="badge badge-blue">Advanced</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Environment Variables / Security</span>
+              <div class="skill-meta"><span class="skill-pct">90%</span><span class="badge badge-green">Expert</span></div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     TECHNOLOGY GRID
+════════════════════════════════════ -->
+<section id="technologies" class="section section-alt" aria-labelledby="tech-heading">
+  <div class="container">
+
+    <div class="section-header centered reveal">
+      <div class="nb-label">🛠️ Stack</div>
+      <h2 id="tech-heading">Technologies Mastered</h2>
+      <p style="max-width:500px;margin-top:var(--space-3)">Every tool here was used hands-on in at least one real project.</p>
+    </div>
+
+    <div class="grid-auto-sm reveal" data-stagger aria-label="Technology stack">
+
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-blue)">🐍</div>
+        <div class="tech-card-info"><div class="tech-card-name">Python 3.x</div><div class="tech-card-desc">Core language</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-green)">🌶️</div>
+        <div class="tech-card-info"><div class="tech-card-name">Flask</div><div class="tech-card-desc">Web framework</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-purple)">⚡</div>
+        <div class="tech-card-info"><div class="tech-card-name">FastAPI</div><div class="tech-card-desc">Async APIs</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-yellow)">🗄️</div>
+        <div class="tech-card-info"><div class="tech-card-name">SQLAlchemy</div><div class="tech-card-desc">ORM &amp; SQLite</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-blue)">🐼</div>
+        <div class="tech-card-info"><div class="tech-card-name">Pandas</div><div class="tech-card-desc">Data analysis</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-green)">🔢</div>
+        <div class="tech-card-info"><div class="tech-card-name">NumPy</div><div class="tech-card-desc">Numerical computing</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-red)">📈</div>
+        <div class="tech-card-info"><div class="tech-card-name">Matplotlib</div><div class="tech-card-desc">Visualization</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-purple)">🎨</div>
+        <div class="tech-card-info"><div class="tech-card-name">Seaborn</div><div class="tech-card-desc">Statistical plots</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-orange)">🕸️</div>
+        <div class="tech-card-info"><div class="tech-card-name">BeautifulSoup</div><div class="tech-card-desc">Web scraping</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-yellow)">🤖</div>
+        <div class="tech-card-info"><div class="tech-card-name">Selenium</div><div class="tech-card-desc">Browser automation</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-blue)">☁️</div>
+        <div class="tech-card-info"><div class="tech-card-name">Cloudinary</div><div class="tech-card-desc">Cloud images</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-orange)">🎮</div>
+        <div class="tech-card-info"><div class="tech-card-name">Pygame</div><div class="tech-card-desc">Game development</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-purple)">🖥️</div>
+        <div class="tech-card-info"><div class="tech-card-name">Tkinter</div><div class="tech-card-desc">GUI apps</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-red)">📊</div>
+        <div class="tech-card-info"><div class="tech-card-name">Chart.js</div><div class="tech-card-desc">Web dashboards</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-green)">📡</div>
+        <div class="tech-card-info"><div class="tech-card-name">REST APIs</div><div class="tech-card-desc">25+ integrations</div></div>
+      </div>
+      <div class="tech-card" data-stagger-item>
+        <div class="tech-card-icon" style="background:var(--pastel-pink)">🖱️</div>
+        <div class="tech-card-info"><div class="tech-card-name">PyAutoGUI</div><div class="tech-card-desc">Screen automation</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     ACHIEVEMENT TIMELINE — Key Milestones
+════════════════════════════════════ -->
+<section id="timeline" class="section" aria-labelledby="milestones-heading">
+  <div class="container">
+
+    <div class="section-header centered reveal">
+      <div class="nb-label">📅 Milestones</div>
+      <h2 id="milestones-heading">Key Achievements</h2>
+      <p style="max-width:500px;margin-top:var(--space-3)">Pivotal moments across the 100-day journey — from first program to production platform.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--space-6)" data-stagger>
+
+      <div class="milestone-card reveal delay-100" style="border-top:6px solid var(--pastel-green)" data-stagger-item>
+        <div class="flex items-center gap-4" style="margin-bottom:var(--space-4)">
+          <div class="milestone-dot" style="background:var(--pastel-green);color:var(--text-primary)">1</div>
+          <div>
+            <div style="font-size:var(--text-xs);font-weight:700;color:var(--text-subtle);font-family:var(--font-mono);margin-bottom:2px">Day 1</div>
+            <div style="font-weight:800;color:var(--text-primary);font-size:var(--text-base)">First Python Program</div>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm)">Band Name Generator — the <code>print("Hello, World!")</code> moment that started everything. First string manipulation and user input.</p>
+        <div class="tags-row"><span class="badge badge-green">Variables</span><span class="badge badge-green">Strings</span><span class="badge badge-green">Input</span></div>
+      </div>
+
+      <div class="milestone-card reveal delay-200" style="border-top:6px solid var(--pastel-blue)" data-stagger-item>
+        <div class="flex items-center gap-4" style="margin-bottom:var(--space-4)">
+          <div class="milestone-dot" style="background:var(--pastel-blue);color:var(--text-primary)">7</div>
+          <div>
+            <div style="font-size:var(--text-xs);font-weight:700;color:var(--text-subtle);font-family:var(--font-mono);margin-bottom:2px">Day 7</div>
+            <div style="font-weight:800;color:var(--text-primary);font-size:var(--text-base)">First Complete Game</div>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm)">Hangman — first game with ASCII art, game loop, win/lose conditions, and input validation. Proof that functions and loops work together.</p>
+        <div class="tags-row"><span class="badge badge-blue">Functions</span><span class="badge badge-blue">Loops</span><span class="badge badge-blue">ASCII Art</span></div>
+      </div>
+
+      <div class="milestone-card reveal delay-300" style="border-top:6px solid var(--pastel-orange)" data-stagger-item>
+        <div class="flex items-center gap-4" style="margin-bottom:var(--space-4)">
+          <div class="milestone-dot" style="background:var(--pastel-orange);color:var(--text-primary)">20</div>
+          <div>
+            <div style="font-size:var(--text-xs);font-weight:700;color:var(--text-subtle);font-family:var(--font-mono);margin-bottom:2px">Day 20–21</div>
+            <div style="font-weight:800;color:var(--text-primary);font-size:var(--text-base)">First OOP Game</div>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm)">Snake Game — multi-file OOP architecture. Collision detection and persistent high score. A major architectural leap.</p>
+        <div class="tags-row"><span class="badge badge-amber">OOP</span><span class="badge badge-amber">Turtle</span><span class="badge badge-amber">Multi-file</span></div>
+      </div>
+
+      <div class="milestone-card reveal delay-100" style="border-top:6px solid var(--pastel-purple)" data-stagger-item>
+        <div class="flex items-center gap-4" style="margin-bottom:var(--space-4)">
+          <div class="milestone-dot" style="background:var(--pastel-purple);color:var(--text-primary)">31</div>
+          <div>
+            <div style="font-size:var(--text-xs);font-weight:700;color:var(--text-subtle);font-family:var(--font-mono);margin-bottom:2px">Day 31</div>
+            <div style="font-weight:800;color:var(--text-primary);font-size:var(--text-base)">First Capstone</div>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm)">FlashCard App — production-quality GUI with card flip animation, progress persistence, and a complete learning UX. First "real" app.</p>
+        <div class="tags-row"><span class="badge badge-purple">Capstone</span><span class="badge badge-purple">Tkinter</span><span class="badge badge-purple">CSV</span></div>
+      </div>
+
+      <div class="milestone-card reveal delay-200" style="border-top:6px solid var(--pastel-green)" data-stagger-item>
+        <div class="flex items-center gap-4" style="margin-bottom:var(--space-4)">
+          <div class="milestone-dot" style="background:var(--pastel-green);color:var(--text-primary)">33</div>
+          <div>
+            <div style="font-size:var(--text-xs);font-weight:700;color:var(--text-subtle);font-family:var(--font-mono);margin-bottom:2px">Day 33</div>
+            <div style="font-weight:800;color:var(--text-primary);font-size:var(--text-base)">First API Integration</div>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm)">ISS Tracker — real-time ISS position, sunrise/sunset alerts, and email notifications when the station flies overhead.</p>
+        <div class="tags-row"><span class="badge badge-green">REST API</span><span class="badge badge-green">SMTP</span><span class="badge badge-green">JSON</span></div>
+      </div>
+
+      <div class="milestone-card reveal delay-300" style="border-top:6px solid var(--pastel-red)" data-stagger-item>
+        <div class="flex items-center gap-4" style="margin-bottom:var(--space-4)">
+          <div class="milestone-dot" style="background:var(--pastel-red);color:var(--text-primary)">69</div>
+          <div>
+            <div style="font-size:var(--text-xs);font-weight:700;color:var(--text-subtle);font-family:var(--font-mono);margin-bottom:2px">Day 69</div>
+            <div style="font-weight:800;color:var(--text-primary);font-size:var(--text-base)">Production Blog</div>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm)">Multi-User Blog — relational database, auth, admin system, comments, CKEditor. First truly production-ready full-stack app.</p>
+        <div class="tags-row"><span class="badge badge-red">Capstone</span><span class="badge badge-red">Full-Stack</span><span class="badge badge-red">Auth</span></div>
+      </div>
+
+      <div class="milestone-card reveal delay-100" style="border-top:6px solid var(--pastel-yellow)" data-stagger-item>
+        <div class="flex items-center gap-4" style="margin-bottom:var(--space-4)">
+          <div class="milestone-dot" style="background:var(--pastel-yellow);color:var(--text-primary)">97</div>
+          <div>
+            <div style="font-size:var(--text-xs);font-weight:700;color:var(--text-subtle);font-family:var(--font-mono);margin-bottom:2px">Day 97</div>
+            <div style="font-weight:800;color:var(--text-primary);font-size:var(--text-base)">E-Commerce Platform</div>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm)">The Fake Shop — 7 database tables, shopping cart, Chart.js admin, Cloudinary, email notifications, CSRF protection.</p>
+        <div class="tags-row"><span class="badge badge-amber">Capstone</span><span class="badge badge-amber">E-Commerce</span><span class="badge badge-amber">Cloud</span></div>
+      </div>
+
+      <div class="milestone-card reveal delay-200" style="border-top:6px solid var(--text-primary)" data-stagger-item>
+        <div class="flex items-center gap-4" style="margin-bottom:var(--space-4)">
+          <div class="milestone-dot">100</div>
+          <div>
+            <div style="font-size:var(--text-xs);font-weight:700;color:var(--text-subtle);font-family:var(--font-mono);margin-bottom:2px">Day 100</div>
+            <div style="font-weight:800;color:var(--text-primary);font-size:var(--text-base)">🎉 Journey Complete!</div>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm)">Police Shootings Analysis — social impact data science capstone. Multiple datasets, advanced Pandas, statistical visualizations. 100/100 ✅</p>
+        <div class="tags-row"><span class="badge badge-green">Final</span><span class="badge badge-green">100%</span><span class="badge badge-green">Complete</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     REPOSITORY EXPLORER
+════════════════════════════════════ -->
+<section id="explorer" class="section section-alt" aria-labelledby="explorer-heading">
+  <div class="container">
+
+    <div class="section-header centered reveal">
+      <div class="nb-label">📁 Repository</div>
+      <h2 id="explorer-heading">Project Structure</h2>
+      <p style="max-width:500px;margin-top:var(--space-3)">Browse the repo — click any folder to expand, click a file to see details.</p>
+    </div>
+
+    <div class="explorer-layout reveal" role="region" aria-label="Repository explorer">
+
+      <!-- File Tree Sidebar -->
+      <div class="explorer-sidebar">
+        <div style="font-size:var(--text-xs);font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-subtle);padding:var(--space-2) var(--space-3);margin-bottom:var(--space-2)">100Days Python /</div>
+
+        <!-- Beginner -->
+        <div class="tree-item tree-folder" data-children="tree-beginner"
+             role="button" tabindex="0" aria-expanded="false">
+          <span class="tree-icon tree-toggle-icon">▸</span>
+          <span class="tree-icon">📁</span>
+          <span>Beginner</span>
+          <span style="margin-left:auto;font-size:0.65rem;color:var(--text-subtle)">1–14</span>
+        </div>
+        <div class="tree-children" id="tree-beginner">
+          <div class="tree-item tree-file" tabindex="0"
+               data-content="<div><div style='font-weight:800;font-size:1rem;margin-bottom:8px'>📄 Beginner / Day7 — Hangman</div><p style='color:#555;margin-bottom:12px'>Complete word guessing game with ASCII art for life stages, list manipulation for blanks, input validation, and win/lose conditions.</p><div style='font-family:JetBrains Mono,monospace;font-size:0.75rem;color:#3B82F6;background:#CDE7FF;padding:8px 12px;border-radius:6px;border:2px solid #111'>Skills: Functions, Lists, Strings, Loops</div></div>">
+            <span class="tree-icon">📄</span> Day7 / hangman.py
+          </div>
+          <div class="tree-item tree-file" tabindex="0"
+               data-content="<div><div style='font-weight:800;font-size:1rem;margin-bottom:8px'>📄 Beginner / Day11 — Blackjack</div><p style='color:#555;margin-bottom:12px'>Complete card game with dealer AI, Ace handling (1 or 11), Hit/Stand mechanics, and win condition checking.</p><div style='font-family:JetBrains Mono,monospace;font-size:0.75rem;color:#3B82F6;background:#CDE7FF;padding:8px 12px;border-radius:6px;border:2px solid #111'>Skills: OOP basics, Logic, Game design</div></div>">
+            <span class="tree-icon">📄</span> Day11 / blackjack.py
+          </div>
+          <div class="tree-item tree-file" tabindex="0"
+               data-content="<div><div style='font-weight:800;font-size:1rem;margin-bottom:8px'>📄 Beginner / Day5 — Password Generator</div><p style='color:#555;margin-bottom:12px'>Random password creation with letters, symbols, and numbers. Shuffling for extra security.</p><div style='font-family:JetBrains Mono,monospace;font-size:0.75rem;color:#3B82F6;background:#CDE7FF;padding:8px 12px;border-radius:6px;border:2px solid #111'>Skills: Random, Loops, Lists</div></div>">
+            <span class="tree-icon">📄</span> Day5 / password_gen.py
+          </div>
+        </div>
+
+        <!-- Intermediate -->
+        <div class="tree-item tree-folder" data-children="tree-intermediate"
+             role="button" tabindex="0" aria-expanded="false">
+          <span class="tree-icon tree-toggle-icon">▸</span>
+          <span class="tree-icon">📁</span>
+          <span>Intermediate</span>
+          <span style="margin-left:auto;font-size:0.65rem;color:var(--text-subtle)">15–31</span>
+        </div>
+        <div class="tree-children" id="tree-intermediate">
+          <div class="tree-item tree-file" tabindex="0"
+               data-content="<div><div style='font-weight:800;font-size:1rem;margin-bottom:8px'>📄 Intermediate / Day20-21 — Snake Game</div><p style='color:#555;margin-bottom:12px'>Classic arcade game: multi-file OOP with snake.py, food.py, scoreboard.py. Collision detection, high-score persistence.</p><div style='font-family:JetBrains Mono,monospace;font-size:0.75rem;color:#3B82F6;background:#CDE7FF;padding:8px 12px;border-radius:6px;border:2px solid #111'>Skills: OOP, Turtle, File I/O, Game loops</div></div>">
+            <span class="tree-icon">📄</span> Day20-21 / snake.py
+          </div>
+          <div class="tree-item tree-file" tabindex="0"
+               data-content="<div><div style='font-weight:800;font-size:1rem;margin-bottom:8px'>📄 Intermediate / Day29 — Password Manager</div><p style='color:#555;margin-bottom:12px'>Full Tkinter GUI with random password generation, clipboard copy, JSON persistence, and search functionality.</p><div style='font-family:JetBrains Mono,monospace;font-size:0.75rem;color:#3B82F6;background:#CDE7FF;padding:8px 12px;border-radius:6px;border:2px solid #111'>Skills: Tkinter, JSON, pyperclip, GUI design</div></div>">
+            <span class="tree-icon">📄</span> Day29 / password_manager.py
+          </div>
+          <div class="tree-item tree-file" tabindex="0"
+               data-content="<div><div style='font-weight:800;font-size:1rem;margin-bottom:8px'>📄 Intermediate / Day31 — FlashCard App ⭐</div><p style='color:#555;margin-bottom:12px'>Language learning app with card flip animation, progress persistence to CSV, and learned-word removal system.</p><div style='font-family:JetBrains Mono,monospace;font-size:0.75rem;color:#3B82F6;background:#CDE7FF;padding:8px 12px;border-radius:6px;border:2px solid #111'>Skills: Tkinter, Canvas, Pandas, Timer</div></div>">
+            <span class="tree-icon">📄</span> Day31 / flash_card.py ⭐
+          </div>
+        </div>
+
+        <!-- Advanced -->
+        <div class="tree-item tree-folder" data-children="tree-advanced"
+             role="button" tabindex="0" aria-expanded="false">
+          <span class="tree-icon tree-toggle-icon">▸</span>
+          <span class="tree-icon">📁</span>
+          <span>Advanced</span>
+          <span style="margin-left:auto;font-size:0.65rem;color:var(--text-subtle)">59–81</span>
+        </div>
+        <div class="tree-children" id="tree-advanced">
+          <div class="tree-item tree-file" tabindex="0"
+               data-content="<div><div style='font-weight:800;font-size:1rem;margin-bottom:8px'>📄 Advanced / Day69 — Multi-User Blog ⭐</div><p style='color:#555;margin-bottom:12px'>Complete CMS: Users, Posts, Comments tables. Admin decorator, Gravatar, CKEditor, session management.</p><div style='font-family:JetBrains Mono,monospace;font-size:0.75rem;color:#3B82F6;background:#CDE7FF;padding:8px 12px;border-radius:6px;border:2px solid #111'>Skills: Flask, SQLAlchemy, Auth, Relationships</div></div>">
+            <span class="tree-icon">📄</span> Day69 / main.py ⭐
+          </div>
+          <div class="tree-item tree-file" tabindex="0"
+               data-content="<div><div style='font-weight:800;font-size:1rem;margin-bottom:8px'>📄 Advanced / Day66 — Cafe REST API</div><p style='color:#555;margin-bottom:12px'>Complete REST API: GET (random/all/search), POST, PATCH, DELETE. JSON responses, error handling, API key auth.</p><div style='font-family:JetBrains Mono,monospace;font-size:0.75rem;color:#3B82F6;background:#CDE7FF;padding:8px 12px;border-radius:6px;border:2px solid #111'>Skills: Flask, REST, SQLAlchemy, JSON</div></div>">
+            <span class="tree-icon">📄</span> Day66 / main.py
+          </div>
+        </div>
+
+        <!-- Professional -->
+        <div class="tree-item tree-folder" data-children="tree-professional"
+             role="button" tabindex="0" aria-expanded="false">
+          <span class="tree-icon tree-toggle-icon">▸</span>
+          <span class="tree-icon">📁</span>
+          <span>Professional</span>
+          <span style="margin-left:auto;font-size:0.65rem;color:var(--text-subtle)">82–100</span>
+        </div>
+        <div class="tree-children" id="tree-professional">
+          <div class="tree-item tree-file" tabindex="0"
+               data-content="<div><div style='font-weight:800;font-size:1rem;margin-bottom:8px'>📄 Professional / Day97 — The Fake Shop 🏆</div><p style='color:#555;margin-bottom:12px'>Production e-commerce: 7 DB tables, Flask-Login, Cloudinary, Chart.js admin, Flask-Mail, CSRF, CSV export.</p><div style='font-family:JetBrains Mono,monospace;font-size:0.75rem;color:#3B82F6;background:#CDE7FF;padding:8px 12px;border-radius:6px;border:2px solid #111'>Skills: Full-stack, Cloud, Auth, Analytics</div></div>">
+            <span class="tree-icon">📄</span> Day97 / app.py 🏆
+          </div>
+          <div class="tree-item tree-file" tabindex="0"
+               data-content="<div><div style='font-weight:800;font-size:1rem;margin-bottom:8px'>📄 Professional / Day98 — Viral Content Factory 🏆</div><p style='color:#555;margin-bottom:12px'>3-phase AI pipeline: Reddit scraping → LLM optimization → TTS audio → video composition → Instagram/YouTube posting.</p><div style='font-family:JetBrains Mono,monospace;font-size:0.75rem;color:#3B82F6;background:#CDE7FF;padding:8px 12px;border-radius:6px;border:2px solid #111'>Skills: AI, Automation, Video, Social Media</div></div>">
+            <span class="tree-icon">📄</span> Day98 / main.py 🏆
+          </div>
+          <div class="tree-item tree-file" tabindex="0"
+               data-content="<div><div style='font-weight:800;font-size:1rem;margin-bottom:8px'>📄 Professional / Day100 — Police Shootings 🏆</div><p style='color:#555;margin-bottom:12px'>Final capstone: multiple CSV datasets, Pandas merging, statistical analysis, social impact data visualization.</p><div style='font-family:JetBrains Mono,monospace;font-size:0.75rem;color:#3B82F6;background:#CDE7FF;padding:8px 12px;border-radius:6px;border:2px solid #111'>Skills: Pandas, Jupyter, Matplotlib, Stats</div></div>">
+            <span class="tree-icon">📄</span> Day100 / Day100.ipynb 🏆
+          </div>
+        </div>
+
+        <div style="margin-top:var(--space-4);padding-top:var(--space-4);border-top:2px solid var(--border)">
+          <a href="https://github.com/indiser/100DaysPython"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-primary btn-sm" style="width:100%;justify-content:center">
+            Open GitHub →
+          </a>
+        </div>
+      </div>
+
+      <!-- Content Pane -->
+      <div class="explorer-content">
+        <div id="explorer-file-content">
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;min-height:220px;color:var(--text-subtle);text-align:center;gap:var(--space-3)">
+            <div style="font-size:3rem">📂</div>
+            <div style="font-size:var(--text-base);font-weight:700;color:var(--text-muted)">Select a file to see details</div>
+            <div style="font-size:var(--text-sm)">Click any file in the sidebar</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     RESOURCES
+════════════════════════════════════ -->
+<section id="resources" class="section" aria-labelledby="resources-heading">
+  <div class="container">
+
+    <div class="section-header centered reveal">
+      <div class="nb-label">📚 Resources</div>
+      <h2 id="resources-heading">Learning Resources</h2>
+      <p style="max-width:500px;margin-top:var(--space-3)">The documentation and learning materials that powered this 100-day journey.</p>
+    </div>
+
+    <div class="grid-3 reveal" data-stagger aria-label="Resource links">
+
+      <a class="resource-card" href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer" data-stagger-item>
+        <div class="resource-card-icon" style="background:var(--pastel-blue)">🐍</div>
+        <div>
+          <div class="resource-card-title">Python Official Docs</div>
+          <div class="resource-card-desc">The authoritative Python 3 reference — language specs, standard library, and tutorials.</div>
+        </div>
+      </a>
+
+      <a class="resource-card" href="https://flask.palletsprojects.com/" target="_blank" rel="noopener noreferrer" data-stagger-item>
+        <div class="resource-card-icon" style="background:var(--pastel-green)">🌶️</div>
+        <div>
+          <div class="resource-card-title">Flask Documentation</div>
+          <div class="resource-card-desc">Comprehensive Flask docs covering routing, templating, and extensions.</div>
+        </div>
+      </a>
+
+      <a class="resource-card" href="https://pandas.pydata.org/docs/" target="_blank" rel="noopener noreferrer" data-stagger-item>
+        <div class="resource-card-icon" style="background:var(--pastel-orange)">🐼</div>
+        <div>
+          <div class="resource-card-title">Pandas Documentation</div>
+          <div class="resource-card-desc">DataFrames, CSV handling, data manipulation — the data science backbone.</div>
+        </div>
+      </a>
+
+      <a class="resource-card" href="https://numpy.org/doc/" target="_blank" rel="noopener noreferrer" data-stagger-item>
+        <div class="resource-card-icon" style="background:var(--pastel-purple)">🔢</div>
+        <div>
+          <div class="resource-card-title">NumPy Documentation</div>
+          <div class="resource-card-desc">Numerical computing, array operations, linear algebra, and math functions.</div>
+        </div>
+      </a>
+
+      <a class="resource-card" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank" rel="noopener noreferrer" data-stagger-item>
+        <div class="resource-card-icon" style="background:var(--pastel-yellow)">🕸️</div>
+        <div>
+          <div class="resource-card-title">BeautifulSoup Docs</div>
+          <div class="resource-card-desc">HTML/XML parsing for web scraping — selectors, navigation, data extraction.</div>
+        </div>
+      </a>
+
+      <a class="resource-card" href="https://selenium-python.readthedocs.io/" target="_blank" rel="noopener noreferrer" data-stagger-item>
+        <div class="resource-card-icon" style="background:var(--pastel-red)">🤖</div>
+        <div>
+          <div class="resource-card-title">Selenium Docs</div>
+          <div class="resource-card-desc">Browser automation — WebDriver, element interaction, form filling.</div>
+        </div>
+      </a>
+
+      <a class="resource-card" href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener noreferrer" data-stagger-item>
+        <div class="resource-card-icon" style="background:var(--pastel-green)">⚡</div>
+        <div>
+          <div class="resource-card-title">FastAPI Documentation</div>
+          <div class="resource-card-desc">Modern, fast async APIs with automatic Swagger docs generation.</div>
+        </div>
+      </a>
+
+      <a class="resource-card" href="https://docs.sqlalchemy.org/" target="_blank" rel="noopener noreferrer" data-stagger-item>
+        <div class="resource-card-icon" style="background:var(--pastel-yellow)">🗄️</div>
+        <div>
+          <div class="resource-card-title">SQLAlchemy Docs</div>
+          <div class="resource-card-desc">ORM, database models, relationships, and CRUD with SQLite.</div>
+        </div>
+      </a>
+
+      <a class="resource-card" href="https://drangelayu.com/" target="_blank" rel="noopener noreferrer" data-stagger-item>
+        <div class="resource-card-icon" style="background:var(--pastel-pink)">🎓</div>
+        <div>
+          <div class="resource-card-title">Angela Yu</div>
+          <div class="resource-card-desc">High-quality tutorials that bridged theory and practical implementation.</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ════════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+
+      <div>
+        <a href="#home" class="nav-logo" style="display:inline-flex;margin-bottom:var(--space-3);text-decoration:none">
+          <div class="nav-logo-icon" aria-hidden="true">🐍</div>
+          <span>100DaysPython</span>
+        </a>
+        <div class="footer-copy">Built with HTML, CSS &amp; Vanilla JS. Deployed on GitHub Pages.</div>
+      </div>
+
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a class="footer-link" href="#home">Home</a>
+        <a class="footer-link" href="#journey">Journey</a>
+        <a class="footer-link" href="#projects">Projects</a>
+        <a class="footer-link" href="#skills">Skills</a>
+        <a class="footer-link" href="https://github.com/indiser/100DaysPython" target="_blank" rel="noopener noreferrer">GitHub →</a>
+      </nav>
+
+      <div class="footer-copy">
+        © 2024–2026 &middot; 100 Days of Python &middot; 100% Complete ✅
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" aria-label="Scroll back to top" title="Back to top">↑</button>
+
+
+<!-- ════════════════════════════════════
+     JAVASCRIPT — All logic unchanged
+════════════════════════════════════ -->
+<script src="js/particles.js" defer></script>
+<script src="js/counters.js"  defer></script>
+<script src="js/timeline.js"  defer></script>
+<script src="js/search.js"    defer></script>
+<script src="js/theme.js"     defer></script>
+<script src="js/app.js"       defer></script>
+
+<!-- Skill bar width setup (unchanged logic) -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.skill-bar-fill[data-width]').forEach(function (bar) {
+      var w = bar.dataset.width;
+      bar.style.setProperty('--fill-pct', (parseFloat(w) / 100).toFixed(2));
+      bar.style.setProperty('--target-scale', (parseFloat(w) / 100).toFixed(2));
+    });
+  });
+</script>
+
+<!-- Skill bar animation override (unchanged behavior) -->
+<style>
+  .skill-bar-fill {
+    transform: scaleX(0);
+  }
+  .skill-bar-fill.animate {
+    transform: scaleX(var(--target-scale, 1));
+  }
+</style>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+/* ============================================================
+   ANIMATIONS.CSS — Clean, subtle motion (Neo-Brutalist)
+   No glow, no spinning, no bouncing. Lift + fade only.
+   ============================================================ */
+
+/* ── Keyframes ── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes counterUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Delay Utilities ── */
+.delay-100 { transition-delay: 100ms !important; }
+.delay-150 { transition-delay: 150ms !important; }
+.delay-200 { transition-delay: 200ms !important; }
+.delay-300 { transition-delay: 300ms !important; }
+.delay-400 { transition-delay: 400ms !important; }
+.delay-500 { transition-delay: 500ms !important; }
+.delay-600 { transition-delay: 600ms !important; }
+
+/* ── Utility classes ── */
+.animate-fade-in  { animation: fadeIn 0.4s ease forwards; }
+.animate-fade-up  { animation: fadeInUp 0.5s ease forwards; }
+.animate-scale-in { animation: scaleIn 0.3s ease forwards; }
+
+/* ── Counter entry animation ── */
+.stat-card.counted .stat-card-number {
+  animation: counterUp 0.3s ease forwards;
+}
+
+/* ── Typing cursor ── */
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  background: var(--text-primary);
+  vertical-align: middle;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  border-radius: 1px;
+}
+
+/* ── Hero text animations (staggered) ── */
+.hero-badge     { animation: fadeInUp 0.4s ease 0ms both; }
+.hero-headline  { animation: fadeInUp 0.5s ease 100ms both; }
+.hero-subtitle  { animation: fadeInUp 0.5s ease 180ms both; }
+.typing-line    { animation: fadeInUp 0.5s ease 260ms both; }
+.cta-group      { animation: fadeInUp 0.5s ease 340ms both; }
+.hero-terminal  { animation: fadeInUp 0.5s ease 180ms both; }
+
+/* ── Canvas (hidden in Neo-Brutalist design) ── */
+#particles-canvas {
+  display: none;
+}
+.hero-radial    { display: none; }
+.hero-grid      { display: none; }
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal, .reveal-left, .reveal-scale {
+    opacity: 1;
+    transform: none;
+  }
+}

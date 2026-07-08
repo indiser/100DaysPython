@@ -1,0 +1,196 @@
+/* ============================================================
+   RESPONSIVE.CSS — Mobile-First Breakpoints (Neo-Brutalist)
+   ============================================================ */
+
+/* ════════════════════════════════════════
+   Mobile (< 640px)
+════════════════════════════════════════ */
+@media (max-width: 639px) {
+  /* ── Nav ── */
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+
+  /* ── Hero: single column ── */
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: var(--space-12) var(--container-pad);
+    gap: var(--space-8);
+  }
+  .hero-visual { display: none; }
+  .cta-group {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .cta-group .btn { width: 100%; justify-content: center; }
+
+  /* ── Grids → single column ── */
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .grid-auto { grid-template-columns: 1fr; }
+  .grid-auto-sm { grid-template-columns: repeat(2, 1fr); }
+
+  /* ── Stats ── */
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+  .stat-card-number { font-size: var(--text-3xl); }
+
+  /* ── Skills ── */
+  .skills-layout { grid-template-columns: 1fr; }
+  .skills-sidebar {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: var(--space-2);
+    padding: var(--space-3);
+  }
+  .skills-sidebar::-webkit-scrollbar { display: none; }
+  .skill-tab {
+    flex-shrink: 0;
+    white-space: nowrap;
+    width: auto;
+    min-width: auto;
+  }
+
+  /* ── Timeline ── */
+  .timeline { padding-left: var(--space-8); }
+  .timeline::before { left: 10px; }
+  .timeline-dot { left: -14px; }
+
+  /* ── Explorer ── */
+  .explorer-layout {
+    grid-template-columns: 1fr;
+  }
+  .explorer-sidebar {
+    border-right: none;
+    border-bottom: 3px solid var(--border);
+    max-height: 220px;
+  }
+
+  /* ── Journey section two-col (inline style) → single col ── */
+  [style*="grid-template-columns:340px 1fr"],
+  [style*="grid-template-columns: 340px 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-8) !important;
+  }
+
+  /* ── Journey two-col grid inside timeline.js ── */
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-4) !important;
+  }
+
+
+  /* ── Footer ── */
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+  .footer-links { gap: var(--space-4); }
+
+  /* ── Sections ── */
+  .section { padding: var(--space-16) 0; }
+
+  /* ── Back to top ── */
+  #back-to-top { bottom: var(--space-5); right: var(--space-5); }
+
+  /* ── Section header ── */
+  .section-header { margin-bottom: var(--space-8); }
+  .glow-divider { margin: var(--space-10) 0; }
+}
+
+/* ════════════════════════════════════════
+   Small Tablet (640px – 767px)
+════════════════════════════════════════ */
+@media (min-width: 640px) and (max-width: 767px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+
+  .hero { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .skills-layout { grid-template-columns: 1fr; }
+  [style*="grid-template-columns:340px 1fr"],
+  [style*="grid-template-columns: 340px 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-8) !important;
+  }
+  .skills-sidebar {
+    flex-direction: row;
+    position: static;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+  .skill-tab { flex-shrink: 0; white-space: nowrap; width: auto; }
+}
+
+/* ════════════════════════════════════════
+   Tablet (768px – 1023px)
+════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav-links {
+    gap: 0;
+  }
+  .nav-link { padding: var(--space-2) var(--space-2); font-size: 0.78rem; }
+  .hamburger { display: none; }
+
+  .hero { grid-template-columns: 1fr 1fr; }
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+
+  .skills-layout { grid-template-columns: 180px 1fr; }
+  .skills-sidebar { position: static; }
+  .explorer-layout { grid-template-columns: 240px 1fr; }
+}
+
+/* ════════════════════════════════════════
+   Desktop (≥ 1024px)
+════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  .hamburger { display: none; }
+  .nav-links { display: flex; }
+}
+
+/* ════════════════════════════════════════
+   Wide (≥ 1280px)
+════════════════════════════════════════ */
+@media (min-width: 1280px) {
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ════════════════════════════════════════
+   Touch targets
+════════════════════════════════════════ */
+@media (hover: none) and (pointer: coarse) {
+  .btn       { min-height: 48px; }
+  .filter-btn { min-height: 44px; }
+  .nav-link  { min-height: 44px; }
+  .skill-tab { min-height: 44px; }
+  .tree-item { min-height: 44px; }
+}
+
+/* ════════════════════════════════════════
+   Overflow guard
+════════════════════════════════════════ */
+* { max-width: 100%; }
+img, video, iframe, canvas { max-width: 100%; }
+
+/* ════════════════════════════════════════
+   Print
+════════════════════════════════════════ */
+@media print {
+  #navbar, #back-to-top, .hamburger, .mobile-menu { display: none !important; }
+  body { background: #fff; color: #000; }
+  main { padding-top: 0; }
+  .section { padding: 2rem 0; }
+}
