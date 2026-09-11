@@ -1,20 +1,33 @@
-import requests
+from curl_cffi import requests
 import json
 import random
 import os
 import re
-import asyncio
 import html
 from dotenv import load_dotenv
 from langdetect import detect, LangDetectException
 from llm_router import chat_fast, chat_strong
 from datetime import datetime
+import ctypes
+import time
+from requests.exceptions import RequestException
 load_dotenv()
+
+def prevent_sleep():
+    if os.name == 'nt':
+        try:
+            ctypes.windll.kernel32.SetThreadExecutionState(0x80000000 | 0x00000001)
+        except: pass
+
+prevent_sleep()
 
 script_dir=os.path.dirname(os.path.abspath(__file__))
 file_path=os.path.join(script_dir,"scripts.json")
 database = []
 existing_ids = set()
+
+with open("cookies.json", "r", encoding="utf-8") as filp:
+    raw_cookies = json.load(filp)
 
 if os.path.exists(file_path):
     with open(file_path, "r", encoding="UTF-8") as filp:
@@ -26,7 +39,6 @@ if os.path.exists(file_path):
             print("WARNING: Database corrupted. Starting fresh.")
 
 
-OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 LIMIT = 1000
 # 1. Define your fallback hierarchy
 SUBREDDITS = [
@@ -66,10 +78,20 @@ SUBREDDITS = [
     "Jokes"
 ]
 
-headers = {
-    "User-Agent": "Python:BrainrotBot:v1.1 (by /u/YourRedditUsername)"
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "application/json",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Sec-Ch-Ua": '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    "Sec-Ch-Ua-Mobile": "?0",
+    "Sec-Ch-Ua-Platform": '"Windows"',
 }
 
+COOKIES = {cookie['name'] : cookie['value'] for cookie in raw_cookies}
+
+session = requests.Session(impersonate="chrome120")
+session.cookies.update(COOKIES)
+session.headers.update(HEADERS)
 
 def sanitize_text(raw_text: str) -> str:
     text=html.unescape(raw_text)
@@ -241,10 +263,18 @@ def generate_viral_hook(title: str, story_text: str) -> str:
         return title
     
 def fetch_brainrot_story(subreddit_name: str, existing_ids:set ) -> dict:
-    api_url = f"https://www.reddit.com/r/{subreddit_name}/top.json?t=day&limit={LIMIT}"
-    response = requests.get(url=api_url, headers=headers)
-    response.raise_for_status()
-    data = response.json()
+    try:
+        api_url = f"https://www.reddit.com/r/{subreddit_name}/top.json?t=day&limit={LIMIT}"
+        time.sleep(5);
+        response = session.get(url= api_url)
+        response.raise_for_status()
+        data = response.json()
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP Error on {subreddit_name}: {e}")
+        raise RuntimeError(f"HTTP Error: {e}")
+    except RequestException as e:
+        print(f"Network drop on {subreddit_name}: {e}")
+        raise RuntimeError(f"Network Error: {e}")
 
     for child in data['data']['children']:
         id = child['data']['id']
@@ -311,6 +341,11 @@ def load_from_local_database() -> dict:
         
     with open(file_path, "r", encoding="UTF-8") as filp:
         database = json.load(filp)
+    
+    if all(item.get("used", True) for item in database):
+        print("WARNING: Backlog exhausted. Resetting flags.")
+        for item in database:
+            item["used"] = False
         
     for item in database:
         if item.get("used") is False:
